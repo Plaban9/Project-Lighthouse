@@ -131,6 +131,7 @@ Material:
     - _InitialColor: {r: 0.0037735105, g: 1, b: 0.4188214, a: 0}
     - _LogoColor: {r: 0, g: 1, b: 0.71991634, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _TraspTest: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7584482024683747736
 MonoBehaviour:
