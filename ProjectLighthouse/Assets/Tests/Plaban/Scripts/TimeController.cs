@@ -68,15 +68,7 @@ public class TimeController : MonoBehaviour
         NotifyDayNightCycleChange();
     }
 
-    void Update()
-    {
-        UpdateTimeOfDay();
-        RotateSun();
-        UpdateLightSettings();
-        UpdateFogSettings();
-    }
-
-    //void FixedUpdate()
+    //void Update()
     //{
     //    UpdateTimeOfDay();
     //    RotateSun();
@@ -84,9 +76,17 @@ public class TimeController : MonoBehaviour
     //    UpdateFogSettings();
     //}
 
+    void FixedUpdate()
+    {
+        UpdateTimeOfDay();
+        RotateSun();
+        UpdateLightSettings();
+        UpdateFogSettings();
+    }
+
     private void UpdateTimeOfDay()
     {
-        _currentTime = _currentTime.AddSeconds(Time.deltaTime + _timeMultiplier);
+        _currentTime = _currentTime.AddSeconds(Time.fixedDeltaTime + _timeMultiplier);
 
         if (_currentTimeText != null)
         {
@@ -163,7 +163,8 @@ public class TimeController : MonoBehaviour
 
             double percentage = timeSinceFogStart.TotalMinutes / _fogDuration.TotalMinutes;
 
-            RenderSettings.fogColor = Color.Lerp(_fogColor.Evaluate(0f), _fogColor.Evaluate(1f), _fogIntensityCurve.Evaluate((float)percentage));
+            //RenderSettings.fogColor = Color.Lerp(_fogColor.Evaluate(0f), _fogColor.Evaluate(1f), _fogIntensityCurve.Evaluate((float)percentage));
+            RenderSettings.fogColor = RenderSettings.ambientLight;
             RenderSettings.fogDensity = Mathf.Lerp(0, _maxFogIntensity, _fogIntensityCurve.Evaluate((float)percentage));
         }
     }

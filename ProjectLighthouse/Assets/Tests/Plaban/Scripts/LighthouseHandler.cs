@@ -10,8 +10,8 @@ public class LighthouseHandler : MonoBehaviour
     [SerializeField] private Material _lighthouseMaterial;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip _waves;
-    [SerializeField] private AudioClip _seagulls;
+    [SerializeField] private AudioSource _waves;
+    [SerializeField] private AudioClip _siren;
     [SerializeField] private AudioSource _audioSource;
 
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class LighthouseHandler : MonoBehaviour
     {
         if (_waves != null)
         {
-            AudioSource.PlayClipAtPoint(_waves, transform.position);
+            _waves.Play();
         }
     }
 
@@ -55,15 +55,32 @@ public class LighthouseHandler : MonoBehaviour
             _lighthouseMaterial.DisableKeyword("_EMISSION");
         }
 
-        if (_seagulls != null)
+        if (_audioSource != null)
         {
-            AudioSource.PlayClipAtPoint(_seagulls, transform.position);
+            _audioSource.Play();
         }
     }
 
     private void OnNightStarted()
     {
         d("Night Started");
+
+        if (_audioSource != null)
+        {
+            _audioSource.Stop();
+        }
+
+        if (_siren != null)
+        {
+            AudioSource.PlayClipAtPoint(_siren, transform.position, 5f);
+
+            StartCoroutine(nameof(IlluminateLighthouse), _siren.length);
+        }
+    }
+
+    private IEnumerator IlluminateLighthouse(float time)
+    {
+        yield return new WaitForSeconds(time);
 
         if (_spotlightContainer != null)
         {
@@ -73,11 +90,6 @@ public class LighthouseHandler : MonoBehaviour
         if (_lighthouseMaterial != null)
         {
             _lighthouseMaterial.EnableKeyword("_EMISSION");
-        }
-
-        if (_seagulls != null)
-        {
-            
         }
     }
 
