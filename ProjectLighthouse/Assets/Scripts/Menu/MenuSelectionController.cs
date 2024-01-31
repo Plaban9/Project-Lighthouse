@@ -39,7 +39,6 @@ namespace Menu.MenuSelectionController
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Debug.Log($"Mouse over {hit.collider.gameObject.name}");
                 if (_currentMouseOver != hit.collider.gameObject)
                 {
                     if (_currentMouseOver != null)
@@ -70,12 +69,15 @@ namespace Menu.MenuSelectionController
             }
             else
             {
-                if (_currentMouseOver.TryGetComponent<ClickableMenuObject>
-                        (out ClickableMenuObject oldhighlightedObj))
+                if(_currentMouseOver != null)
                 {
-                    oldhighlightedObj.DisableHighlight();
+                    if (_currentMouseOver.TryGetComponent<ClickableMenuObject>
+                            (out ClickableMenuObject oldhighlightedObj))
+                    {
+                        oldhighlightedObj.DisableHighlight();
+                    }
+                    _currentMouseOver = null;
                 }
-                _currentMouseOver = null;
             }
         }
     }
