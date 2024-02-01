@@ -4,12 +4,16 @@ namespace Menu.MenuCameraControl
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using TMPro;
     using UnityEngine;
     using static UnityEngine.Rendering.DebugUI;
 
     public class MenuCameraControl : MonoBehaviour
     {
         // Start is called before the first frame update
+        [Header("Game Controller")]
+        [SerializeField] private TimeController timeController;
+
         [Header("Cameras")]
         [SerializeField] private CinemachineVirtualCamera mainMenuCamera;
         [SerializeField] private CinemachineVirtualCamera settMenuCamera;
@@ -31,9 +35,11 @@ namespace Menu.MenuCameraControl
 
         [Header("Buttons & Images")]
         [SerializeField] private GameObject logo;
-        [SerializeField] private Material gameMaterial;
+        [SerializeField] private Material logoMaterial;
         [SerializeField] private AnimationCurve logoAnimation;
-
+        [SerializeField] private GameObject title;
+        [SerializeField] private float titleDuration;
+        [SerializeField] private AnimationCurve titleAnimation;
         private enum CameraPositions
         {
             LOGO,
@@ -49,6 +55,8 @@ namespace Menu.MenuCameraControl
 
         void Start()
         {
+            title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 0f);
+            timeController.FreezeTime(true);
             StartCoroutine(StartCamera());
             StartCoroutine(LogoFadeInFadeOut());
         }
@@ -85,7 +93,6 @@ namespace Menu.MenuCameraControl
 
         private void HideMenu(CameraPositions currentCameraPosition, Action callback)
         {
-            Debug.Log("Aie!");
             Action action = () => { callback.Invoke(); isShowingMenu = false; };
             switch (currentCameraPosition)
             {
@@ -111,6 +118,7 @@ namespace Menu.MenuCameraControl
             {
                 case CameraPositions.MAIN_MENU:
                     FadeIn(mainMenu);
+                    StartCoroutine(FadeInTitle());
                     break;
                 case CameraPositions.SETTINGS:
                     FadeIn(settMenu);
@@ -121,58 +129,75 @@ namespace Menu.MenuCameraControl
             }
         }
 
+        private IEnumerator FadeInTitle()
+        {
+            title.GetComponent<MeshRenderer>().material.EnableKeyword("GLOW_ON");
+            for (float i = 0.0f; i < 1.0f; i+= 1.0f / titleDuration)
+            {
+                title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1,
+                    titleAnimation.Evaluate(i));
+                title.GetComponent<MeshRenderer>().material.SetFloat("_GlowPower", i);
+                yield return null;
+            }
+            title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 1);
+        }
+
+
+
         private void FadeIn(GameObject gb)
         {
-            gb.SetActive(true);
+            if(gb != null) gb.SetActive(true);
             StartCoroutine(FadeFromCoroutine(gb, 0, 1, fadeAnim, fadeDuration, () => { }));
         }
 
         private void FadeOut(GameObject gb, Action callback)
         {
-            Debug.Log("Is fading out");
             StartCoroutine(FadeFromCoroutine(gb, 1, 0, fadeAnim, fadeDuration, 
                 () => {
                     callback?.Invoke();
-                    Debug.Log("callbackcalled");
                     gb.SetActive(false); 
                      }));
         }
 
-        IEnumerator FadeFromCoroutine(GameObject gb, float from, float to, AnimationCurve animCurve, float time, Action callback)
+        IEnumerator FadeFromCoroutine(
+            GameObject gb, float from, float to, 
+            AnimationCurve animCurve, float time, Action callback)
         {
-            foreach (Transform t in gb.transform){
-                if(t.TryGetComponent<CanvasRenderer>(out CanvasRenderer render))
-                {
-                    render.SetAlpha(0);
-                }
-            }
-            Debug.Log("Before");
-
-            for (float i = 0f; i < 1f; i+= 1.0f/time)
+            if (gb != null)
             {
-                float progress =  animCurve.Evaluate(i);
-                float val = (from * (1-progress) ) + to * animCurve.Evaluate(i);
                 foreach (Transform t in gb.transform)
                 {
                     if (t.TryGetComponent<CanvasRenderer>(out CanvasRenderer render))
                     {
-                        render.SetAlpha(val);
+                        render.SetAlpha(0);
+                    }
+
+                }
+
+                for (float i = 0f; i < 1f; i += 1.0f / time)
+                {
+                    float progress = animCurve.Evaluate(i);
+                    float val = (from * (1 - progress)) + to * animCurve.Evaluate(i);
+                    foreach (Transform t in gb.transform)
+                    {
+                        if (t.TryGetComponent<CanvasRenderer>(out CanvasRenderer render))
+                        {
+                            render.SetAlpha(val);
+                        }
+                    }
+
+                    yield return null;
+                }
+
+                foreach (Transform t in gb.transform)
+                {
+                    if (t.TryGetComponent<CanvasRenderer>(out CanvasRenderer render))
+                    {
+                        render.SetAlpha(to);
                     }
                 }
-                Debug.Log($"Fading... {val}");
-
-                yield return null;
             }
-            Debug.Log("After");
-
-            foreach (Transform t in gb.transform)
-            {
-                if (t.TryGetComponent<CanvasRenderer>(out CanvasRenderer render))
-                {
-                    render.SetAlpha(to);
-                }
-            }
-            callback.Invoke();
+            callback();
         }
 
 
