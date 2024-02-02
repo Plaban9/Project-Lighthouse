@@ -3,24 +3,26 @@ using UnityEngine.EventSystems;
 
 public class DraggableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] GameObject prefabToInstantiate;
-
-    [SerializeField] RectTransform dragElement;
-
-    [SerializeField] RectTransform canvas;
-
+    [SerializeField] protected RectTransform dragElement;
+    [SerializeField] protected RectTransform canvas;
 
     // Original position
     Vector2 oriLocalPointerPos;
     Vector3 oriPanelLocalPos;
     Vector2 oriPos;
 
-    private void Start()
+    protected virtual void Start()
     {
         oriPos = dragElement.localPosition;
+        
+        if(dragElement == null)
+            dragElement = GetComponent<RectTransform>();
+
+        if(canvas == null)
+            canvas = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         dragElement.gameObject.SetActive(true);
         dragElement.localPosition = oriPos;
@@ -34,9 +36,8 @@ public class DraggableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             out oriLocalPointerPos);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("eventData pos: "+ eventData.position);
         Vector2 localPointerPos;
 
         if(RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -49,32 +50,10 @@ public class DraggableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
             dragElement.localPosition = oriPanelLocalPos + offsetToOri;
         }
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, 1000f))
-        {
-            if(hit.collider.CompareTag("Player"))
-            {
-                Debug.Log("Pointing FLoor!");
-            }
-        }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
-        //Destroy(dragElement);
         dragElement.gameObject.SetActive(false);
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if(Physics.Raycast(ray, out hit, 1000f))
-        {
-            Vector3 worldPoint = hit.point;
-            
-            Instantiate(prefabToInstantiate, worldPoint, Quaternion.identity);
-        }
     }
 }
