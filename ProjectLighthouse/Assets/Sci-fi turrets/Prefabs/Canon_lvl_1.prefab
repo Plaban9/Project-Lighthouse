@@ -176,7 +176,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010650229702}
-  - component: {fileID: 1852303210822830069}
   - component: {fileID: 33000012028477070}
   - component: {fileID: 23000011533064888}
   - component: {fileID: 95000012794672780}
@@ -195,29 +194,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013566905100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.96735626, z: 0, w: 0.25342032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4000014011301926}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -150.64, z: 0}
---- !u!114 &1852303210822830069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000013566905100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc98dfde4ac3fa44bb4902a9dd51bfd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunTransform: {fileID: 4000013869490946}
-  bulletPrefab: {fileID: 5426644676179594552, guid: 5ee72f57d3d0a0b44a7c7385815cbfea,
-    type: 3}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33000012028477070
 MeshFilter:
   m_ObjectHideFlags: 0
