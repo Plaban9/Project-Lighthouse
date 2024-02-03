@@ -75,6 +75,8 @@ public class DefenderSpawnPoint : MonoBehaviour
         {
             var d = Instantiate(defender, spawnPosition.position, Quaternion.identity);
             d.transform.parent = spawnPosition;
+            d.GetComponent<DefenderObject>().SetDeployed(true);
+
             //d.transform.position = spawnPosition.position;
             status = DefenderSpawnPointStatus.Occupied;
         }

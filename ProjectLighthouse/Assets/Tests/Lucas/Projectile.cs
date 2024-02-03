@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    [SerializeField] float bulletSpeed = 500f;
+    [SerializeField] float damage = 1f;
     Rigidbody rb;
-    float bulletSpeed = 20f;
     
     private void Awake()
     {
@@ -14,9 +14,31 @@ public class Projectile : MonoBehaviour
 
     }
 
+    public void Setup(float damage, float bulletSpeed = 500f)
+    {
+        this.damage = damage;
+        this.bulletSpeed = bulletSpeed;
+    }
+
     public void Fire(Vector3 direction)
     {
         rb.AddForce(direction * bulletSpeed);
-        Destroy(gameObject, 5f);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Destroy(gameObject);
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            var enemy = collision.gameObject.GetComponent<Enemy>();
+
+            if(enemy != null && !enemy.IsDead())
+            {
+                enemy.ReceiveDamage(damage);
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
 }

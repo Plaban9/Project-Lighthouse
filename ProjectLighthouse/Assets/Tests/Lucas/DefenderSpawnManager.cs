@@ -44,7 +44,7 @@ public class DefenderSpawnManager : MonoBehaviour
 
             if (ObjectHit != null && !EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.DrawLine(Camera.main.transform.position, Hitpoint, Color.blue, 0.5f);
+                //Debug.DrawLine(Camera.main.transform.position, Hitpoint, Color.blue, 0.5f);
                 //testObj.transform.position = Hitpoint;
             }
 
