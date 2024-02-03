@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DefenderSpawnPointStatus
+{
+    Available,
+    Occupied
+}
+
 public class DefenderSpawnPoint : MonoBehaviour
 {
     MeshRenderer baseMesh;
 
+    [Header("Materials")]
     [SerializeField] Material normalMaterial;
     [SerializeField] Material onSelectMaterial;
-    // Start is called before the first frame update
+    [SerializeField] Material onOccupiedMaterial;
 
+    [Header("Spawning")]
+    [SerializeField] Transform spawnPosition;
+
+    DefenderSpawnPointStatus status = DefenderSpawnPointStatus.Available;
     RaycastHit hitData;
     DefenderSpawnManager DSM;
 
@@ -17,9 +28,13 @@ public class DefenderSpawnPoint : MonoBehaviour
     {
         baseMesh = GetComponent<MeshRenderer>();
         DSM = DefenderSpawnManager.Instance;
+
+        if(spawnPosition == null)
+        {
+            spawnPosition = transform.Find("SpawnPosition");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!DSM.IsDraggingDefenderFromMenu())
@@ -34,13 +49,34 @@ public class DefenderSpawnPoint : MonoBehaviour
 
     void SetOnSelect(bool set)
     {
-        if(set && baseMesh.material != onSelectMaterial)
+        if(set)
         {
-            baseMesh.material = onSelectMaterial;
+            if(status == DefenderSpawnPointStatus.Available && baseMesh.material != onSelectMaterial)
+            {
+                baseMesh.material = onSelectMaterial;
+            }
+            else if(status == DefenderSpawnPointStatus.Occupied && baseMesh.material != onOccupiedMaterial)
+            {
+                baseMesh.material = onOccupiedMaterial;
+            }
         }
-        else if(!set && baseMesh.material != normalMaterial)
+        else
         {
-            baseMesh.material = normalMaterial;
+            if(baseMesh.material != normalMaterial)
+            {
+                baseMesh.material = normalMaterial;
+            }
+        }
+    }
+
+    public void SpawnDefender(GameObject defender)
+    {
+        if(spawnPosition.childCount == 0)
+        {
+            var d = Instantiate(defender, spawnPosition.position, Quaternion.identity);
+            d.transform.parent = spawnPosition;
+            //d.transform.position = spawnPosition.position;
+            status = DefenderSpawnPointStatus.Occupied;
         }
     }
 }

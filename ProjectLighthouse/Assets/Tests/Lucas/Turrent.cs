@@ -5,12 +5,15 @@ using UnityEngine;
 public class Turrent : MonoBehaviour
 {
     [SerializeField] Transform gunTransform;
+
+    [Header("Projectile")]
     [SerializeField] GameObject bulletPrefab;
     RaycastHit hitInfo;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Shot", 1f, 1);
+        //InvokeRepeating("Shot", 1f, 1);
     }
 
     // Update is called once per frame
