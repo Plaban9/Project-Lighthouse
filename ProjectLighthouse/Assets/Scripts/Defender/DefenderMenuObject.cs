@@ -9,6 +9,7 @@ using DG.Tweening;
 public class DefenderMenuObject : DraggableWorldObject
 {
     [SerializeField] Image defenderIcon;
+    [SerializeField] LayerMask layerMask;
 
     protected override void Start()
     {
@@ -41,7 +42,7 @@ public class DefenderMenuObject : DraggableWorldObject
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 1000f) && hit.collider.CompareTag("SpawnPoint"))
+        if (Physics.Raycast(ray, out hit, 1000f, layerMask) && hit.collider.CompareTag("SpawnPoint"))
         {
             Vector3 worldPoint = hit.point;
             //Instantiate(prefabToInstantiate, worldPoint, Quaternion.identity);

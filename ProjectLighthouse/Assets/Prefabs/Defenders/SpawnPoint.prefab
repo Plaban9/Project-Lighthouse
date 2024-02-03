@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3210732518755363263}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1024195387453671707}
   - component: {fileID: 5314075866852180390}
   - component: {fileID: 4241424736274401986}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpawnPoint
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
@@ -153,4 +153,4 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: 5d366e103c4bf1a43b6746c21b7cc2a9, type: 2}
   onSelectMaterial: {fileID: 2100000, guid: b46cb4bd372aae4449a9d9b3e9bfb757, type: 2}
   onOccupiedMaterial: {fileID: 2100000, guid: 1ea71f03cf67ea54b9cf2413b636d417, type: 2}
-  spawnPosition: {fileID: 0}
+  spawnPosition: {fileID: 3210732518755363263}

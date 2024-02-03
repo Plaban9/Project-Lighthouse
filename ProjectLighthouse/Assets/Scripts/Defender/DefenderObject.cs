@@ -8,6 +8,7 @@ public class DefenderObject : MonoBehaviour
     [Header("Transform")]
     [SerializeField] Transform gunRotationPart;
     [SerializeField] List<Transform> gunPoints = new List<Transform>();
+    [SerializeField] List<Transform> gunPoints2 = new List<Transform>();
 
     Animator animator;
 
@@ -16,7 +17,9 @@ public class DefenderObject : MonoBehaviour
     [SerializeField] float fireRate = 0.2f;
     [SerializeField] float rotationSpeed = 150f;
     private float fireTimer = 0f;
+    private float fireTimer2 = 0f;
     private int curGunPointIndex = 0;
+    private int curGunPointIndex2 = 0;
 
     [Header("Vision")]
     [SerializeField] Transform vision;
@@ -33,6 +36,12 @@ public class DefenderObject : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.speed = 1 / fireRate;
     }
+
+    private void Start()
+    {
+        transform.localEulerAngles = Vector3.zero;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -64,7 +73,10 @@ public class DefenderObject : MonoBehaviour
             }
         }
 
-        foreach(var gunPoint in gunPoints)
+        foreach (var gunPoint in gunPoints)
+            Debug.DrawRay(gunPoint.position, gunPoint.TransformDirection(Vector3.forward) * visionRadius, Color.green);
+
+        foreach (var gunPoint in gunPoints2)
             Debug.DrawRay(gunPoint.position, gunPoint.TransformDirection(Vector3.forward) * visionRadius, Color.green);
 
         if (targetEnemy != null)
@@ -75,7 +87,7 @@ public class DefenderObject : MonoBehaviour
            
             gunRotationPart.rotation = Quaternion.RotateTowards(gunRotationPart.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            foreach(var gunPoint in gunPoints)
+            foreach (var gunPoint in gunPoints)
             {
                 Physics.Raycast(gunPoint.position, gunPoint.transform.TransformDirection(Vector3.forward), out hitInfo, visionRadius, targetMask);
                 {
@@ -95,7 +107,27 @@ public class DefenderObject : MonoBehaviour
                     }
                 }
             }
-            
+            foreach (var gunPoint in gunPoints2)
+            {
+                Physics.Raycast(gunPoint.position, gunPoint.transform.TransformDirection(Vector3.forward), out hitInfo, visionRadius, targetMask);
+                {
+                    if (hitInfo.transform != null)
+                    {
+                        if (hitInfo.transform == targetEnemy.transform)
+                        {
+                            fireTimer2 += Time.deltaTime;
+
+                            if (fireTimer2 >= fireRate)
+                            {
+                                Shot2();
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+
         }
 
     }
@@ -115,6 +147,17 @@ public class DefenderObject : MonoBehaviour
         bullet.Fire(gunPoint.transform.TransformDirection(Vector3.forward));
 
         fireTimer = 0f;
+    }
+    void Shot2()
+    {
+        animator.SetTrigger("Shoot");
+        var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
+        var direction = (targetEnemy.transform.position - gunPoint.position).normalized;
+        var bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity).GetComponent<Projectile>();
+        bullet.transform.forward = gunPoint.TransformDirection(Vector3.forward);
+        bullet.Fire(gunPoint.transform.TransformDirection(Vector3.forward));
+
+        fireTimer2 = 0f;
     }
 
 }

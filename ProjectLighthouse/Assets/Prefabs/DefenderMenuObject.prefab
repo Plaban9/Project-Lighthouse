@@ -139,6 +139,9 @@ MonoBehaviour:
   prefabToInstantiate: {fileID: 1000013566905100, guid: b5ceca2fab4f06f49aa235f4f428275a,
     type: 3}
   defenderIcon: {fileID: 4682997027118814700}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &5826996963333829696
 GameObject:
   m_ObjectHideFlags: 0
