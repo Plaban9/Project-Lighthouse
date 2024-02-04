@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UniRx;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float maxHp = 10f;
     [SerializeField] ReactiveProperty<float> curHp = new ReactiveProperty<float>();
-
+    private NavMeshAgent _agent;
+    private Transform _lightHouse;
     Subject<bool> isDead = new Subject<bool>();
+
+    private void Awake()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+        _lightHouse = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     void Start()
     {
@@ -18,7 +26,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _agent.SetDestination(_lightHouse.position);
     }
 
     public void Setup(float hp)
