@@ -22,13 +22,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         curHp.Value = maxHp;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.IsGameOver()) return;
+
         _agent.SetDestination(_lightHouse.position);
         transform.LookAt(_lightHouse);
+
     }
 
     public void Setup(float hp)
