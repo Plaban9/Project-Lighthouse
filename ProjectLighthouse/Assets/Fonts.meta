@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ProjectLighthouse/Assets/Fonts.meta
 guid: 6aa37bf2d9d4b9e4db26446ecd1db6bc
 folderAsset: yes
+========
+guid: 1339a4898f215dc45abb42046e190fff
+>>>>>>>> d156973f5777da44ab9843c6d9dd68bf922476d3:ProjectLighthouse/Assets/Resources/Artworks/Icons/Flat Icons [Free]/Source/Free Flat GUI.svg.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
