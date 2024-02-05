@@ -15,15 +15,16 @@ namespace Menu.MenuCameraControl
         [SerializeField] private TimeController timeController;
 
         [Header("Cameras")]
+        [SerializeField] private CinemachineVirtualCamera logoCamera;
         [SerializeField] private CinemachineVirtualCamera mainMenuCamera;
         [SerializeField] private CinemachineVirtualCamera settMenuCamera;
         [SerializeField] private CinemachineVirtualCamera diffMenuCamera;
         [SerializeField] private CinemachineVirtualCamera gameCamera;
+        [SerializeField] private CinemachineVirtualCamera creditCamera;
         [SerializeField] private CinemachineBrain cinemachineBrain;
 
 
         [Header("Menus")]
-        [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject settMenu;
         [SerializeField] private GameObject diffMenu;
         [SerializeField] private AnimationCurve fadeAnim;
@@ -55,6 +56,8 @@ namespace Menu.MenuCameraControl
 
         void Start()
         {
+            DeactivateAllCameras();
+            logoCamera.Priority = 15;
             title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 0f);
             timeController.FreezeTime(true);
             StartCoroutine(StartCamera());
@@ -97,7 +100,7 @@ namespace Menu.MenuCameraControl
             switch (currentCameraPosition)
             {
                 case CameraPositions.MAIN_MENU:
-                    FadeOut(mainMenu, action);
+                    action();
                     break;
                 case CameraPositions.SETTINGS:
                     FadeOut(settMenu, action);
@@ -117,7 +120,6 @@ namespace Menu.MenuCameraControl
             switch (currentCameraPos)
             {
                 case CameraPositions.MAIN_MENU:
-                    FadeIn(mainMenu);
                     StartCoroutine(FadeInTitle());
                     break;
                 case CameraPositions.SETTINGS:
@@ -210,16 +212,16 @@ namespace Menu.MenuCameraControl
                 switch (cameraPosition)
                 {
                     case CameraPositions.MAIN_MENU:
-                        mainMenuCamera.gameObject.SetActive(true);
+                        mainMenuCamera.Priority = 15;
                         break;
                     case CameraPositions.SETTINGS:
-                        settMenuCamera.gameObject.SetActive(true);
+                        settMenuCamera.Priority = 15;
                         break;
                     case CameraPositions.DIFFICULTY:
-                        diffMenuCamera.gameObject.SetActive(true);
+                        diffMenuCamera.Priority = 15;
                         break;
                     case CameraPositions.GAME:
-                        gameCamera.gameObject.SetActive(true);
+                        gameCamera.Priority = 15;
                         break;
                 }
             };
@@ -229,10 +231,12 @@ namespace Menu.MenuCameraControl
 
         private void DeactivateAllCameras()
         {
-            mainMenuCamera.gameObject.SetActive(false);
-            settMenuCamera.gameObject.SetActive(false);
-            diffMenuCamera.gameObject.SetActive(false);
-            gameCamera.gameObject.SetActive(false);
+            mainMenuCamera.Priority = 10;
+            settMenuCamera.Priority = 10;
+            diffMenuCamera.Priority = 10;
+            gameCamera.Priority = 10;
+            creditCamera.Priority = 10;
+            logoCamera.Priority = 10;
 
         }
 

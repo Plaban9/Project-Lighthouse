@@ -33,13 +33,12 @@ namespace Menu.ClickableMenuObjects
         }
         public void Highlight()
         {
-            _mat.EnableKeyword("GLOW_ON");
+            _mat.color = Color.white;
         }
 
         public void DisableHighlight()
         {
-            gameObject.transform.localScale = _originalScale;
-            _mat.DisableKeyword("GLOW_ON");
+            _mat.color = Color.gray;
 
         }
     }
