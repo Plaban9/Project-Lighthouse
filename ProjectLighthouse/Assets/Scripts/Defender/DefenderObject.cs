@@ -93,7 +93,7 @@ public class DefenderObject : MonoBehaviour
                 {
                     if (hitInfo.transform != null)
                     {
-                        if (hitInfo.transform == targetEnemy.transform)
+                        if (hitInfo.transform.CompareTag("Enemy"))
                         {
                             fireTimer += Time.deltaTime;
 
@@ -113,7 +113,7 @@ public class DefenderObject : MonoBehaviour
                 {
                     if (hitInfo.transform != null)
                     {
-                        if (hitInfo.transform == targetEnemy.transform)
+                        if (hitInfo.transform.CompareTag("Enemy"))
                         {
                             fireTimer2 += Time.deltaTime;
 
