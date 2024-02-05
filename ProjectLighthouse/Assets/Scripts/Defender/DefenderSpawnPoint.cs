@@ -87,9 +87,9 @@ public class DefenderSpawnPoint : MonoBehaviour
     {
         if(spawnPosition.childCount > 0)
         {
-            foreach(GameObject go in spawnPosition)
+            foreach(Transform go in spawnPosition)
             {
-                Destroy(go);
+                Destroy(go.gameObject);
             }
         }
 

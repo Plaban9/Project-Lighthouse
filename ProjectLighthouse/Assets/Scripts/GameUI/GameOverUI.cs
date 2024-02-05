@@ -12,6 +12,8 @@ public class GameOverUI : MonoBehaviour
         {
             gameObject.SetActive(true);
         }).AddTo(this);
+
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
