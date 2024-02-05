@@ -29,11 +29,11 @@ public class DefenderSpawnManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(instance);
+        defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
     }
 
     private void Start()
     {
-        defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
     }
 
     // Update is called once per frame

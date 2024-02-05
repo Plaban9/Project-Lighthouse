@@ -61,6 +61,10 @@ namespace Menu.MenuCameraControl
 
         void Start()
         {
+            foreach (GameObject gb in enable)
+            {
+                gb?.SetActive(false);
+            }
             DeactivateAllCameras();
             logoCamera.Priority = 15;
             title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 0f);
