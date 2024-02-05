@@ -27,8 +27,13 @@ namespace Menu.MenuCameraControl
         [Header("Menus")]
         [SerializeField] private GameObject settMenu;
         [SerializeField] private GameObject diffMenu;
+        [SerializeField] private GameObject gameUI;
         [SerializeField] private AnimationCurve fadeAnim;
         [SerializeField] private float fadeDuration;
+
+        [Header("When Game Starts")]
+        [SerializeField] private List<GameObject> enable;
+        [SerializeField] private List<GameObject> disable;
 
 
         [Header("Settings")]
@@ -103,6 +108,7 @@ namespace Menu.MenuCameraControl
                     action();
                     break;
                 case CameraPositions.SETTINGS:
+                    StartCoroutine(FadeOutTitle());
                     FadeOut(settMenu, action);
                     break;
                 case CameraPositions.DIFFICULTY:
@@ -110,6 +116,10 @@ namespace Menu.MenuCameraControl
                     break;
                 case CameraPositions.LOGO:
                     FadeOut(logo, action);
+                    break;
+                case CameraPositions.GAME:
+                    StartCoroutine(FadeOutTitle());
+                    action.Invoke();
                     break;
             }
         }
@@ -128,6 +138,9 @@ namespace Menu.MenuCameraControl
                 case CameraPositions.DIFFICULTY:
                     FadeIn(diffMenu);
                     break;
+                case CameraPositions.GAME:
+                    FadeIn(gameUI);
+                    break;
             }
         }
 
@@ -142,6 +155,20 @@ namespace Menu.MenuCameraControl
                 yield return null;
             }
             title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 1);
+        }
+
+        private IEnumerator FadeOutTitle()
+        {
+            for (float i = 1.0f; i > 0.0f; i -= 1.0f / titleDuration)
+            {
+                title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1,
+                    titleAnimation.Evaluate(i));
+                title.GetComponent<MeshRenderer>().material.SetFloat("_GlowPower", i);
+                yield return null;
+            }
+            title.GetComponent<TextMeshPro>().color = new Color(0, 0, 0, 1);
+            title.GetComponent<MeshRenderer>().material.SetFloat("_GlowPower", 0);
+            title.SetActive(false);
         }
 
 
@@ -206,9 +233,10 @@ namespace Menu.MenuCameraControl
         private void SetCameraPosition(CameraPositions cameraPosition)
         {
             DeactivateAllCameras();
+            _currentCameraPosition = cameraPosition;
+
             Action callback = () =>
             {
-                _currentCameraPosition = cameraPosition;
                 switch (cameraPosition)
                 {
                     case CameraPositions.MAIN_MENU:
@@ -222,6 +250,7 @@ namespace Menu.MenuCameraControl
                         break;
                     case CameraPositions.GAME:
                         gameCamera.Priority = 15;
+                        GameStartProcedure();
                         break;
                 }
             };
@@ -247,7 +276,7 @@ namespace Menu.MenuCameraControl
 
         public void ToDifficulty()
         {
-            SetCameraPosition(CameraPositions.DIFFICULTY);
+            SetCameraPosition(CameraPositions.GAME);
         }
 
         public void ToMainMenu()
@@ -273,6 +302,19 @@ namespace Menu.MenuCameraControl
                     ToMainMenu();
                     break;
             }
+        }
+
+        private void GameStartProcedure()
+        {
+            foreach (GameObject gb in enable)
+            {
+                gb?.SetActive(true);
+            }
+            foreach(GameObject gb in disable)
+            {
+                gb?.SetActive(false);
+            }
+            timeController.FreezeTime(false);
         }
     }
 
