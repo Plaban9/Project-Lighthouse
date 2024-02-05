@@ -49,6 +49,8 @@ public class TimeController : MonoBehaviour
     // the event itself
     public static event DayNightEventHandler dayNightCycleStartNotifier;
 
+    private bool _frozenTime = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,7 @@ public class TimeController : MonoBehaviour
 
     private void UpdateTimeOfDay()
     {
+        if (_frozenTime) { return; }
         _currentTime = _currentTime.AddSeconds(Time.fixedDeltaTime + _timeMultiplier);
 
         if (_currentTimeText != null)
@@ -187,5 +190,10 @@ public class TimeController : MonoBehaviour
         }
 
         return difference;
+    }
+
+    public void FreezeTime(bool frozenTime)
+    {
+        _frozenTime = frozenTime;
     }
 }
