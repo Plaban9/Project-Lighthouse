@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
     public void ReceiveDamage(float dmg)
     {
-        GameManager.Instance.SetGameOver(true);
+        //GameManager.Instance.SetGameOver(true);
         curHp.Value -= dmg;
 
         if(curHp.Value <= 0)
