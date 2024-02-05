@@ -19,7 +19,7 @@ namespace Menu.MenuCameraControl
         [SerializeField] private CinemachineVirtualCamera mainMenuCamera;
         [SerializeField] private CinemachineVirtualCamera settMenuCamera;
         [SerializeField] private CinemachineVirtualCamera diffMenuCamera;
-        [SerializeField] private CinemachineVirtualCamera gameCamera;
+        [SerializeField] private CinemachineVirtualCameraBase gameCamera;
         [SerializeField] private CinemachineVirtualCamera creditCamera;
         [SerializeField] private CinemachineBrain cinemachineBrain;
 
@@ -61,6 +61,7 @@ namespace Menu.MenuCameraControl
 
         void Start()
         {
+            cinemachineBrain.m_UpdateMethod = CinemachineBrain.UpdateMethod.FixedUpdate;
             foreach (GameObject gb in enable)
             {
                 gb?.SetActive(false);
