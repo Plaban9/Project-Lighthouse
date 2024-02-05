@@ -10,7 +10,8 @@ public class GameOverUI : MonoBehaviour
     {
         GameManager.Instance.SubscribeGameOver().Subscribe(x =>
         {
-            gameObject.SetActive(true);
+            if(x)
+                gameObject.SetActive(true);
         }).AddTo(this);
 
         gameObject.SetActive(false);

@@ -39,5 +39,7 @@ public class GameManager : MonoBehaviour
     {
         enemySpawnManager.Reset();
         defenderSpawnManager.Reset();
+
+        isGameOver.Value = false;
     }
 }

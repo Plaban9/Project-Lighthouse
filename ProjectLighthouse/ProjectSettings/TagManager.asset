@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnPoint
   - Enemy
+  - Gameover
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - SpawnPoint
   - Floor
   - Rocks
-  - 
+  - Gameover
   - 
   - 
   - 

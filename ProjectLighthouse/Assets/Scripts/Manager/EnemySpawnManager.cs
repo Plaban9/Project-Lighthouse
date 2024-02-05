@@ -10,6 +10,7 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private List<Transform> _respawnPoints = new List<Transform>();
 
+    private List<GameObject> _currentEnemyList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         int spawnIndex = Random.Range(0, _respawnPoints.Count - 1);
         Enemy spawn = Instantiate(_enemyPrefabs[0]);
+        _currentEnemyList.Add(spawn.gameObject);
 
         spawn.transform.position = _respawnPoints[spawnIndex].position;
 
@@ -37,6 +39,11 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void Reset()
     {
-        
+        foreach (var item in _currentEnemyList)
+        {
+            Destroy(item);
+        }
+
+        _currentEnemyList.Clear();
     }
 }

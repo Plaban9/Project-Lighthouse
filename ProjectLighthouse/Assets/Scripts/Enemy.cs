@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         curHp.Value = maxHp;
+        _agent.SetDestination(_lightHouse.position);
 
     }
 
@@ -30,9 +31,12 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.Instance.IsGameOver()) return;
 
-        _agent.SetDestination(_lightHouse.position);
         transform.LookAt(_lightHouse);
 
+        if(Physics.CheckSphere(transform.position, 25, _lightHouse.gameObject.layer))
+        {
+            GameManager.Instance.SetGameOver(true);
+        }
     }
 
     public void Setup(float hp)
@@ -43,6 +47,7 @@ public class Enemy : MonoBehaviour
 
     public void ReceiveDamage(float dmg)
     {
+        GameManager.Instance.SetGameOver(true);
         curHp.Value -= dmg;
 
         if(curHp.Value <= 0)
@@ -67,5 +72,13 @@ public class Enemy : MonoBehaviour
     {
         yield return null;
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Gameover"))
+        {
+            GameManager.Instance.SetGameOver(true);
+        }
     }
 }
