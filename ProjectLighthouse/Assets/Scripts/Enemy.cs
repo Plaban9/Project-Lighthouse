@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _lightHouse = GameObject.FindGameObjectWithTag("Player").transform;
+
+        _agent.SetDestination(_lightHouse.position);
     }
 
     void Start()
