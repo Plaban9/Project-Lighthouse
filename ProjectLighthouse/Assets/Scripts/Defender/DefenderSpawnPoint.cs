@@ -82,4 +82,17 @@ public class DefenderSpawnPoint : MonoBehaviour
             status = DefenderSpawnPointStatus.Occupied;
         }
     }
+
+    public void Reset()
+    {
+        if(spawnPosition.childCount > 0)
+        {
+            foreach(Transform go in spawnPosition)
+            {
+                Destroy(go.gameObject);
+            }
+        }
+
+        status = DefenderSpawnPointStatus.Available;
+    }
 }

@@ -34,4 +34,9 @@ public class EnemySpawnManager : MonoBehaviour
         spawn.transform.position = _respawnPoints[spawnIndex].position;
 
     }
+
+    public void Reset()
+    {
+        
+    }
 }
