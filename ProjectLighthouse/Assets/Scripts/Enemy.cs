@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] float maxHp = 10f;
     [SerializeField] ReactiveProperty<float> curHp = new ReactiveProperty<float>();
+    [SerializeField] private Animator _anim;
     private NavMeshAgent _agent;
     private Transform _lightHouse;
     Subject<bool> isDead = new Subject<bool>();
@@ -22,6 +23,8 @@ public class Enemy : MonoBehaviour
     {
         curHp.Value = maxHp;
         _agent.SetDestination(_lightHouse.position);
+        transform.LookAt(_lightHouse);
+
     }
 
     public void Setup(float hp)
@@ -54,7 +57,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator PerformDead()
     {
-        Destroy(gameObject);
         yield return null;
+        Destroy(gameObject);
     }
 }

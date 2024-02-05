@@ -20,6 +20,23 @@ public class EnemySpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SpawnEnemy();
+        }
+    }
+
+    void SpawnEnemy() 
+    {
+        int spawnIndex = Random.Range(0, _respawnPoints.Count - 1);
+        Enemy spawn = Instantiate(_enemyPrefabs[0]);
+
+        spawn.transform.position = _respawnPoints[spawnIndex].position;
+
+    }
+
+    public void Reset()
+    {
         
     }
 }
