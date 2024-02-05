@@ -21,11 +21,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         curHp.Value = maxHp;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         _agent.SetDestination(_lightHouse.position);
     }
 
