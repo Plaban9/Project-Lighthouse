@@ -83,4 +83,35 @@ public class Enemy : MonoBehaviour
             GameManager.Instance.SetGameOver(true);
         }
     }
+
+    #region Animations
+
+    //Attack anim
+    private void Attack() 
+    {
+        _anim.SetTrigger("Attack");
+    }
+
+    //Hurt anim
+    private void Hurt() 
+    {
+        _anim.SetTrigger("Hurt");
+    }
+
+
+    private void Idle()
+    {
+        _anim.SetBool("Walk", false);
+    }
+
+    private void Walk()
+    {
+        _anim.SetBool("Walk", true);
+    }
+
+    private void Die() 
+    {
+        _anim.SetTrigger("Die");
+    }
+    #endregion
 }
