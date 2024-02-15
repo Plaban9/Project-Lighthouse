@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UniRx;
+using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
@@ -38,6 +39,20 @@ public class Enemy : MonoBehaviour
         if(Physics.CheckSphere(transform.position, 25, _lightHouse.gameObject.layer))
         {
             GameManager.Instance.SetGameOver(true);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        float velocity = _agent.velocity.magnitude / _agent.speed;
+
+        if (velocity == 0.0f)
+        {
+            Idle();
+        }
+        else 
+        {
+            Walk();
         }
     }
 
