@@ -23,11 +23,13 @@ public class DefenderSpawnPoint : MonoBehaviour
     DefenderSpawnPointStatus status = DefenderSpawnPointStatus.Available;
     RaycastHit hitData;
     DefenderSpawnManager DSM;
+    Camera cam;
 
     void Start()
     {
         baseMesh = GetComponent<MeshRenderer>();
         DSM = DefenderSpawnManager.Instance;
+        cam = Camera.main;
 
         if(spawnPosition == null)
         {
@@ -37,35 +39,23 @@ public class DefenderSpawnPoint : MonoBehaviour
 
     void Update()
     {
+        // Make All White
+        if (baseMesh.material.color != Color.white)
+            baseMesh.material.color = Color.white;
+
         if (!DSM.IsDraggingDefenderFromMenu())
-        {
-            SetOnSelect(false);
             return;
-        }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        SetOnSelect(Physics.Raycast(ray, out hitData, 1000) && hitData.transform == transform);
-    }
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        bool currentSelectedSlot = Physics.Raycast(ray, out hitData, 1000) && hitData.transform == transform;
 
-    void SetOnSelect(bool set)
-    {
-        if(set)
+        if (currentSelectedSlot)
         {
-            if(status == DefenderSpawnPointStatus.Available && baseMesh.material != onSelectMaterial)
-            {
-                baseMesh.material = onSelectMaterial;
-            }
-            else if(status == DefenderSpawnPointStatus.Occupied && baseMesh.material != onOccupiedMaterial)
-            {
-                baseMesh.material = onOccupiedMaterial;
-            }
+            baseMesh.material.color = Color.green; // We selecting current gameobject
         }
-        else
+        else if (status == DefenderSpawnPointStatus.Occupied)
         {
-            if(baseMesh.material != normalMaterial)
-            {
-                baseMesh.material = normalMaterial;
-            }
+            baseMesh.material.color = Color.red; // It is already occupied
         }
     }
 
