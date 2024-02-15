@@ -12,15 +12,10 @@ public class DefenderSpawnPoint : MonoBehaviour
 {
     MeshRenderer baseMesh;
 
-    [Header("Materials")]
-    [SerializeField] Material normalMaterial;
-    [SerializeField] Material onSelectMaterial;
-    [SerializeField] Material onOccupiedMaterial;
-
     [Header("Spawning")]
     [SerializeField] Transform spawnPosition;
 
-    DefenderSpawnPointStatus status = DefenderSpawnPointStatus.Available;
+    DefenderSpawnPointStatus status;
     RaycastHit hitData;
     DefenderSpawnManager DSM;
     Camera cam;
@@ -30,8 +25,9 @@ public class DefenderSpawnPoint : MonoBehaviour
         baseMesh = GetComponent<MeshRenderer>();
         DSM = DefenderSpawnManager.Instance;
         cam = Camera.main;
+        status = DefenderSpawnPointStatus.Available;
 
-        if(spawnPosition == null)
+        if (spawnPosition == null)
         {
             spawnPosition = transform.Find("SpawnPosition");
         }
