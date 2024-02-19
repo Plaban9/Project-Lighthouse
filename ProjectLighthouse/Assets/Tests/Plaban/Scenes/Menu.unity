@@ -464,8 +464,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8463242346597073657, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1004926810}
   m_SourcePrefab: {fileID: 100100000, guid: ecf8204b6a052b241bf11d132568a47f, type: 3}
+--- !u!1 &1004926808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8463242346597073657, guid: ecf8204b6a052b241bf11d132568a47f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1004926807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1004926809 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8665679741350308057, guid: ecf8204b6a052b241bf11d132568a47f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1004926807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1004926810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004926808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd1a6bd9870df34bbc449089944ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _crossFade: {fileID: 1004926809}
 --- !u!1 &1508408990
 GameObject:
   m_ObjectHideFlags: 0
