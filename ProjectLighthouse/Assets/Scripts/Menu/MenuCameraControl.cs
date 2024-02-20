@@ -1,6 +1,7 @@
 namespace Menu.MenuCameraControl
 {
     using Cinemachine;
+    using LighthouseGames.SceneUtilities;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -27,14 +28,8 @@ namespace Menu.MenuCameraControl
         [Header("Menus")]
         [SerializeField] private GameObject settMenu;
         [SerializeField] private GameObject diffMenu;
-        [SerializeField] private GameObject gameUI;
         [SerializeField] private AnimationCurve fadeAnim;
         [SerializeField] private float fadeDuration;
-
-        [Header("When Game Starts")]
-        [SerializeField] private List<GameObject> enable;
-        [SerializeField] private List<GameObject> disable;
-
 
         [Header("Settings")]
         [SerializeField] private float timeInMsToLift = 20f;
@@ -58,14 +53,15 @@ namespace Menu.MenuCameraControl
         private bool isShowingMenu;
         private CameraPositions _currentCameraPosition = CameraPositions.LOGO;
 
+        void Awake()
+        {
+            settMenu.SetActive(false);
+            diffMenu.SetActive(false);
+        }
 
         void Start()
         {
             cinemachineBrain.m_UpdateMethod = CinemachineBrain.UpdateMethod.FixedUpdate;
-            foreach (GameObject gb in enable)
-            {
-                gb?.SetActive(false);
-            }
             DeactivateAllCameras();
             logoCamera.Priority = 15;
             title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 0f);
@@ -76,13 +72,7 @@ namespace Menu.MenuCameraControl
 
         private void Update()
         {
-            if(!isShowingMenu)
-            {
-                if (!cinemachineBrain.IsBlending)
-                {
-                    ShowMenu(_currentCameraPosition);
-                }
-            }
+
         }
 
         IEnumerator StartCamera()
@@ -104,16 +94,15 @@ namespace Menu.MenuCameraControl
             }
         }
 
-        private void HideMenu(CameraPositions currentCameraPosition, Action callback)
+        private void HideMenu(Action callback)
         {
             Action action = () => { callback.Invoke(); isShowingMenu = false; };
-            switch (currentCameraPosition)
+            switch (_currentCameraPosition)
             {
                 case CameraPositions.MAIN_MENU:
-                    action();
+                    StartCoroutine(FadeOutTitle(action));
                     break;
                 case CameraPositions.SETTINGS:
-                    StartCoroutine(FadeOutTitle());
                     FadeOut(settMenu, action);
                     break;
                 case CameraPositions.DIFFICULTY:
@@ -123,8 +112,6 @@ namespace Menu.MenuCameraControl
                     FadeOut(logo, action);
                     break;
                 case CameraPositions.GAME:
-                    StartCoroutine(FadeOutTitle());
-                    action.Invoke();
                     break;
             }
         }
@@ -143,17 +130,17 @@ namespace Menu.MenuCameraControl
                 case CameraPositions.DIFFICULTY:
                     FadeIn(diffMenu);
                     break;
-                case CameraPositions.GAME:
-                    FadeIn(gameUI);
-                    break;
+
             }
         }
 
         private IEnumerator FadeInTitle()
         {
             title.GetComponent<MeshRenderer>().material.EnableKeyword("GLOW_ON");
+            title.SetActive(true);
             for (float i = 0.0f; i < 1.0f; i+= 1.0f / titleDuration)
             {
+
                 title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1,
                     titleAnimation.Evaluate(i));
                 title.GetComponent<MeshRenderer>().material.SetFloat("_GlowPower", i);
@@ -162,7 +149,7 @@ namespace Menu.MenuCameraControl
             title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1, 1);
         }
 
-        private IEnumerator FadeOutTitle()
+        private IEnumerator FadeOutTitle(Action action)
         {
             for (float i = 1.0f; i > 0.0f; i -= 1.0f / titleDuration)
             {
@@ -174,6 +161,7 @@ namespace Menu.MenuCameraControl
             title.GetComponent<TextMeshPro>().color = new Color(0, 0, 0, 1);
             title.GetComponent<MeshRenderer>().material.SetFloat("_GlowPower", 0);
             title.SetActive(false);
+            action.Invoke();
         }
 
 
@@ -238,10 +226,9 @@ namespace Menu.MenuCameraControl
         private void SetCameraPosition(CameraPositions cameraPosition)
         {
             DeactivateAllCameras();
-            _currentCameraPosition = cameraPosition;
-
             Action callback = () =>
             {
+                _currentCameraPosition = cameraPosition;
                 switch (cameraPosition)
                 {
                     case CameraPositions.MAIN_MENU:
@@ -258,10 +245,19 @@ namespace Menu.MenuCameraControl
                         GameStartProcedure();
                         break;
                 }
+                StartCoroutine(ShowMenuAfterDoneMoving());
             };
-            HideMenu(_currentCameraPosition, callback);
+            HideMenu(callback);
             
         }
+
+        IEnumerator ShowMenuAfterDoneMoving()
+        {
+            yield return null; yield return null;
+            while (cinemachineBrain.IsBlending) { yield return null; }
+            ShowMenu(_currentCameraPosition);
+        }
+
 
         private void DeactivateAllCameras()
         {
@@ -291,7 +287,7 @@ namespace Menu.MenuCameraControl
 
         public void ToGame()
         {
-            SetCameraPosition(CameraPositions.GAME);
+            SceneManager.Instance.LoadScene("Gameplay", "CrossFade");
         }
 
         public void Back()
@@ -311,14 +307,6 @@ namespace Menu.MenuCameraControl
 
         private void GameStartProcedure()
         {
-            foreach (GameObject gb in enable)
-            {
-                gb?.SetActive(true);
-            }
-            foreach(GameObject gb in disable)
-            {
-                gb?.SetActive(false);
-            }
             timeController.FreezeTime(false);
         }
     }
