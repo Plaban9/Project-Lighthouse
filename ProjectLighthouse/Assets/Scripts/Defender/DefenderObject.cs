@@ -73,10 +73,10 @@ public class DefenderObject : MonoBehaviour
         }
 
         foreach (var gunPoint in gunPoints)
-            Debug.DrawRay(gunPoint.position, gunPoint.TransformDirection(Vector3.forward) * visionRadius, Color.green);
+            Debug.DrawRay(gunPoint.position, gunPoint.forward * visionRadius, Color.green);
 
         foreach (var gunPoint in gunPoints2)
-            Debug.DrawRay(gunPoint.position, gunPoint.TransformDirection(Vector3.forward) * visionRadius, Color.green);
+            Debug.DrawRay(gunPoint.position, gunPoint.forward * visionRadius, Color.green);
 
         if (targetEnemy != null)
         {
@@ -88,47 +88,39 @@ public class DefenderObject : MonoBehaviour
 
             foreach (var gunPoint in gunPoints)
             {
-                Physics.Raycast(gunPoint.position, gunPoint.transform.TransformDirection(Vector3.forward), out hitInfo, visionRadius, targetMask);
+                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, targetMask))
                 {
-                    if (hitInfo.transform != null)
+                    if (hitInfo.transform.TryGetComponent(out Enemy enemy))
                     {
-                        if (hitInfo.transform.CompareTag("Enemy"))
+                        fireTimer += Time.deltaTime;
+
+                        if (fireTimer >= fireRate)
                         {
-                            fireTimer += Time.deltaTime;
-
-                            if (fireTimer >= fireRate)
-                            {
-                                Shot();
-                            }
-
-                            break;
+                            Shot();
                         }
+
+                        break;
                     }
                 }
             }
             foreach (var gunPoint in gunPoints2)
             {
-                Physics.Raycast(gunPoint.position, gunPoint.transform.TransformDirection(Vector3.forward), out hitInfo, visionRadius, targetMask);
+                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, targetMask))
                 {
-                    if (hitInfo.transform != null)
+                    if (hitInfo.transform.TryGetComponent(out Enemy enemy))
                     {
-                        if (hitInfo.transform.CompareTag("Enemy"))
+                        fireTimer2 += Time.deltaTime;
+
+                        if (fireTimer2 >= fireRate)
                         {
-                            fireTimer2 += Time.deltaTime;
-
-                            if (fireTimer2 >= fireRate)
-                            {
-                                Shot2();
-                            }
-
-                            break;
+                            Shot2();
                         }
+
+                        break;
                     }
                 }
             }
-
         }
-
     }
 
     public void SetDeployed(bool set)
@@ -141,10 +133,8 @@ public class DefenderObject : MonoBehaviour
     {
         //animator.SetTrigger("Shoot");
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
-        var direction = (targetEnemy.transform.position - gunPoint.position).normalized;
-        var bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity).GetComponent<Projectile>();
-        bullet.transform.forward = gunPoint.TransformDirection(Vector3.forward);
-        bullet.Fire(gunPoint.transform.TransformDirection(Vector3.forward));
+        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
+        bullet.Fire(gunPoint.forward);
 
         fireTimer = 3f;
     }
@@ -152,10 +142,8 @@ public class DefenderObject : MonoBehaviour
     {
         //animator.SetTrigger("Shoot");
         var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
-        var direction = (targetEnemy.transform.position - gunPoint.position).normalized;
-        var bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity).GetComponent<Projectile>();
-        bullet.transform.forward = gunPoint.TransformDirection(Vector3.forward);
-        bullet.Fire(gunPoint.transform.TransformDirection(Vector3.forward));
+        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
+        bullet.Fire(gunPoint.forward);
 
         fireTimer2 = 3f;
     }

@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 8972894589091760757}
   - component: {fileID: 8665679741350308057}
   - component: {fileID: 3292380163083210993}
+  - component: {fileID: 6998694089123384497}
   m_Layer: 5
   m_Name: CrossFade
   m_TagString: Untagged
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -398,10 +399,23 @@ CanvasGroup:
   m_GameObject: {fileID: 8463242346597073657}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &3292380163083210993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8463242346597073657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd1a6bd9870df34bbc449089944ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _crossFade: {fileID: 8665679741350308057}
+--- !u!114 &6998694089123384497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -620,4 +634,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transitionContainer: {fileID: 4709414784956865255}
+  _transitions: []
   _progressBar: {fileID: 2095008437923431401}

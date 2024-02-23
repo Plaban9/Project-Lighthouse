@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
     }
 
     public void Setup(float damage, float bulletSpeed = 500f)
@@ -22,23 +21,16 @@ public class Projectile : MonoBehaviour
 
     public void Fire(Vector3 direction)
     {
-        rb.AddForce(direction * bulletSpeed);
+        rb.AddForce(direction * bulletSpeed, ForceMode.VelocityChange);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //Destroy(gameObject);
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(other.TryGetComponent(out Enemy enemy) && !enemy.IsDead())
         {
-            var enemy = collision.gameObject.GetComponent<Enemy>();
-
-            if(enemy != null && !enemy.IsDead())
-            {
-                enemy.ReceiveDamage(damage);
-            }
+            enemy.ReceiveDamage(damage);
         }
-
+        Debug.Log(other.name);
         Destroy(gameObject);
     }
-
 }
