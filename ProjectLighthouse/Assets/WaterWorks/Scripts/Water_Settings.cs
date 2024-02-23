@@ -20,6 +20,7 @@ public class Water_Settings : MonoBehaviour
             waterMaterial = GetComponent<MeshRenderer>().sharedMaterial;
         }
 
-        waterVolume.SetVector("pos", new Vector4(0, (waterVolume.GetVector("bounds").y / -2) + transform.position.y + (waterMaterial.GetFloat("_Displacement_Amount") / 3), 0, 0));
+        //waterVolume.SetVector("pos", new Vector4(0, (waterVolume.GetVector("bounds").y / -2) + transform.position.y + (waterMaterial.GetFloat("_Displacement_Amount") / 3), 0, 0));
+        //waterVolume.SetVector("pos", new Vector4(0, (waterVolume.GetVector("bounds").y / -2) + transform.position.y + 0.5f / 3), 0, 0));
     }
 }

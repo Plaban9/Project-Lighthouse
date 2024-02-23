@@ -13,6 +13,8 @@ public class DefenderSpawnManager : MonoBehaviour
 
     [SerializeField] List<DefenderSpawnPoint> defenderSPList = new List<DefenderSpawnPoint>();
 
+    [SerializeField] List<RockSpawner> _rockSpawners = new List<RockSpawner>(); 
+
     public static DefenderSpawnManager Instance
     {
         get
@@ -29,11 +31,11 @@ public class DefenderSpawnManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(instance);
-        defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
     }
 
     private void Start()
     {
+        Init();
     }
 
     // Update is called once per frame
@@ -48,6 +50,16 @@ public class DefenderSpawnManager : MonoBehaviour
         {
             item.Reset();
         }
+    }
+
+    public void Init() 
+    {
+        foreach (var rock in _rockSpawners) 
+        {
+            rock.SpawnRock();
+        }
+
+        defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
     }
 
 

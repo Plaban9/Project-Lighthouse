@@ -33,8 +33,7 @@ public class DefenderObject : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        animator.speed = 1 / fireRate;
+        //animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -127,25 +126,26 @@ public class DefenderObject : MonoBehaviour
     public void SetDeployed(bool set)
     {
         isDeployed = set;
+        //animator.speed = 1 / fireRate;
     }
 
     void Shot()
     {
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
         var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward);
 
-        fireTimer = 0f;
+        fireTimer = 3f;
     }
     void Shot2()
     {
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
         var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
         var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward);
 
-        fireTimer2 = 0f;
+        fireTimer2 = 3f;
     }
 
 }

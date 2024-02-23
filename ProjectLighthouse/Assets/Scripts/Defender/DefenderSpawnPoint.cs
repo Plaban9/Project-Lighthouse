@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum DefenderSpawnPointStatus
 {
@@ -11,7 +12,7 @@ public enum DefenderSpawnPointStatus
 public class DefenderSpawnPoint : MonoBehaviour
 {
     MeshRenderer baseMesh;
-
+    Color originalColor;
     [Header("Spawning")]
     [SerializeField] Transform spawnPosition;
 
@@ -23,6 +24,7 @@ public class DefenderSpawnPoint : MonoBehaviour
     void Start()
     {
         baseMesh = GetComponent<MeshRenderer>();
+        originalColor = baseMesh.material.color;
         DSM = DefenderSpawnManager.Instance;
         cam = Camera.main;
         status = DefenderSpawnPointStatus.Available;
@@ -35,23 +37,25 @@ public class DefenderSpawnPoint : MonoBehaviour
 
     void Update()
     {
-        // Make All White
-        if (baseMesh.material.color != Color.white)
-            baseMesh.material.color = Color.white;
-
         if (!DSM.IsDraggingDefenderFromMenu())
             return;
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         bool currentSelectedSlot = Physics.Raycast(ray, out hitData, 1000) && hitData.transform == transform;
-
-        if (currentSelectedSlot)
+        if (currentSelectedSlot && status == DefenderSpawnPointStatus.Available)
         {
             baseMesh.material.color = Color.green; // We selecting current gameobject
         }
-        else if (status == DefenderSpawnPointStatus.Occupied)
+        else if (currentSelectedSlot && status == DefenderSpawnPointStatus.Occupied)
         {
             baseMesh.material.color = Color.red; // It is already occupied
+        }
+        else 
+        {
+            if (baseMesh.material.color != originalColor) 
+            {
+                baseMesh.material.color = originalColor;
+            }
         }
     }
 
@@ -59,13 +63,16 @@ public class DefenderSpawnPoint : MonoBehaviour
     {
         if(spawnPosition.childCount == 0)
         {
-            var d = Instantiate(defender, spawnPosition.position, Quaternion.identity);
-            d.transform.parent = spawnPosition;
-            d.transform.rotation = Quaternion.identity;
-            d.GetComponent<DefenderObject>().SetDeployed(true);
+            var d = Instantiate(defender, spawnPosition.position, Quaternion.identity).GetComponent<DefenderObject>();
+            d.transform.DOScale(3.0f, 0.3f).OnComplete(() => {
+                d.transform.parent = spawnPosition;
+                d.transform.rotation = Quaternion.identity;
+                d.SetDeployed(true);
+            });
 
             //d.transform.position = spawnPosition.position;
             status = DefenderSpawnPointStatus.Occupied;
+
         }
     }
 
