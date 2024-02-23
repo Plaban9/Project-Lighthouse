@@ -726,6 +726,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 942524401}
     m_Modifications:
+    - target: {fileID: 1114218151197692671, guid: 020a3e69d75f79947a2092dc63e3ff19,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114218151197692671, guid: 020a3e69d75f79947a2092dc63e3ff19,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 4747755082481796223, guid: 020a3e69d75f79947a2092dc63e3ff19,
         type: 3}
       propertyPath: m_Pivot.x
@@ -831,6 +841,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Night Commencement Alert
       objectReference: {fileID: 0}
+    - target: {fileID: 8824191013278879458, guid: 020a3e69d75f79947a2092dc63e3ff19,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b51d0b437871324ba7acc687366cfba,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

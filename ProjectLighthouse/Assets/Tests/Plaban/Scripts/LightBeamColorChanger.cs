@@ -5,6 +5,7 @@ using TMPro;
 
 using UnityEngine;
 using UnityEngine.UI;
+
 namespace LighthouseGames.UI.Effects
 {
     public class LightBeamColorChanger : MonoBehaviour
