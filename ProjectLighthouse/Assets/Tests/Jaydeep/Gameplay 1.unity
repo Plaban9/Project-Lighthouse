@@ -225,7 +225,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -3575,7 +3575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 150, z: -120}
+  m_FollowOffset: {x: 0, y: 197.5691, z: -216.7262}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5464,7 +5464,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -6203,7 +6203,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 1.3333334
   m_MinRegionArea: 4
-  m_NavMeshData: {fileID: 23800000, guid: 1dfd8bc68ad947243a7620c017f4d81b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 59dffc0d81848c0479ebc7a16d44fe1c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &548236023
 PrefabInstance:
@@ -10739,7 +10739,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -11742,7 +11742,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -11804,12 +11804,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4491f08cd47a145bf1a7864015475e, type: 3}
---- !u!1 &1057900856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6246968648749498412, guid: 54a23e1d1be91984599355fb0b7573f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 183481575}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1060152210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12793,7 +12787,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -15770,7 +15764,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -15978,7 +15972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 150, z: -120}
+  m_FollowOffset: {x: 0, y: 197.5691, z: -216.7262}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -16166,7 +16160,6 @@ MonoBehaviour:
   cinemachineBrain: {fileID: 2142035324}
   settMenu: {fileID: 0}
   diffMenu: {fileID: 0}
-  gameUI: {fileID: 1057900856}
   fadeAnim:
     serializedVersion: 2
     m_Curve:
@@ -16192,13 +16185,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   fadeDuration: 1000
-  enable:
-  - {fileID: 273250957}
-  - {fileID: 1479679133}
-  - {fileID: 1057900856}
-  - {fileID: 45069213}
-  disable:
-  - {fileID: 438410854}
   timeInMsToLift: 600
   logo: {fileID: 1966726348}
   logoMaterial: {fileID: 0}
@@ -16344,6 +16330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00dccdede8ce7eb4e81ae776921f46f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clickableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _buttonSoundsSource: {fileID: 0}
+  _soundList: []
 --- !u!1 &1453852781
 GameObject:
   m_ObjectHideFlags: 0
@@ -17004,7 +16995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 150, z: -120}
+  m_FollowOffset: {x: 0, y: 197.5691, z: -216.7262}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -18962,7 +18953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682850820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.36581522, y: -1e-45, z: 1e-45, w: 0.9306875}
+  m_LocalRotation: {x: 0.36581522, y: -2.6389701e-30, z: 1.1945218e-30, w: 0.9306875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24048,7 +24039,7 @@ PrefabInstance:
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 2545833536577596365, guid: 5a4491f08cd47a145bf1a7864015475e,
         type: 3}
@@ -24139,3 +24130,8 @@ SceneRoots:
   - {fileID: 463581169}
   - {fileID: 976811242}
   - {fileID: 211318384}
+  - {fileID: 680075913}
+  - {fileID: 1625253259}
+  - {fileID: 1670674960}
+  - {fileID: 54252170}
+  - {fileID: 1870762182}

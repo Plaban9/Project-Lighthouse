@@ -16,10 +16,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponentInChildren<NavMeshAgent>();
         _lightHouse = GameObject.FindGameObjectWithTag("Player").transform;
-
-        _agent.SetDestination(_lightHouse.position);
     }
 
     void Start()
@@ -34,7 +32,7 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.Instance.IsGameOver()) return;
 
-        transform.LookAt(_lightHouse);
+        //transform.LookAt(_lightHouse);
 
         if(Physics.CheckSphere(transform.position, 25, _lightHouse.gameObject.layer))
         {

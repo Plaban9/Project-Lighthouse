@@ -6,6 +6,7 @@ using DG.Tweening;
 public class DefenderMenuBar : MonoBehaviour
 {
     [SerializeField] GameObject expandButton;
+    [SerializeField] Transform turrentsMenuUI;
 
     RectTransform rectTransform;
     // Start is called before the first frame update
@@ -29,5 +30,12 @@ public class DefenderMenuBar : MonoBehaviour
     public void OnClickCollapseButton()
     {
         rectTransform.DOMoveY(-230, 0.25f).SetEase(Ease.InQuart).onComplete += () => { expandButton.gameObject.SetActive(true); };
+    }
+
+    public void OnMenuToggled(bool isExpanded)
+    {
+        var targetRotation = isExpanded ? 0f : -180f;
+        expandButton.transform.DORotate(Vector3.forward * targetRotation, .25f);
+        turrentsMenuUI.DOScaleX(isExpanded ? 1f : 0f, .25f).SetEase(Ease.InQuint);
     }
 }

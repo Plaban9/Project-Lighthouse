@@ -12,21 +12,18 @@ public class GameManager : MonoBehaviour
 
     ReactiveProperty<bool> isGameOver = new ReactiveProperty<bool>(false);
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-                instance = new GameManager();
-
-            return instance;
-        }
-    }
+    public static GameManager Instance => instance;
 
     void Awake()
     {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
-        DontDestroyOnLoad(instance);
+        DontDestroyOnLoad(gameObject);
     }
 
     public ReactiveProperty<bool> SubscribeGameOver() => isGameOver;

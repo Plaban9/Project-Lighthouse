@@ -12,10 +12,9 @@ public class EnemySpawnManager : MonoBehaviour
 
     private List<GameObject> _currentEnemyList = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        InvokeRepeating(nameof(SpawnEnemy), 0, 5f);
     }
 
     // Update is called once per frame
@@ -30,11 +29,10 @@ public class EnemySpawnManager : MonoBehaviour
     void SpawnEnemy() 
     {
         int spawnIndex = Random.Range(0, _respawnPoints.Count - 1);
-        Enemy spawn = Instantiate(_enemyPrefabs[0]);
+        Enemy spawn = Instantiate(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count - 1)]);
         _currentEnemyList.Add(spawn.gameObject);
 
         spawn.transform.position = _respawnPoints[spawnIndex].position;
-
     }
 
     public void Reset()
