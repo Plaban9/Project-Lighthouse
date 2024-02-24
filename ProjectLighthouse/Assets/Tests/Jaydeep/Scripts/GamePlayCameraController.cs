@@ -18,15 +18,9 @@ namespace LighthouseGames.MainMenu
             _backupUpdateMethod = cinemachineBrain.m_UpdateMethod;
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            Invoke(nameof(SetUpGameplayCamera), cinemachineBrain.m_DefaultBlend.m_Time + .1f);
-        }
-
-        private void OnDisable()
-        {
-            cinemachineBrain.m_UpdateMethod = _backupUpdateMethod;
-            gameplayCam.Priority = 0;
+            cinemachineBrain.ManualUpdate();
         }
 
         private void Update()

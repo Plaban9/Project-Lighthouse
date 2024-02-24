@@ -13,13 +13,6 @@ public class DefenderMenuObject : DraggableWorldObject
 
     protected override void Start()
     {
-        //if(dragElement == null)
-        //{
-        //    dragElement = Instantiate(defenderIcon.gameObject, transform).GetComponent<RectTransform>();
-        //    dragElement.sizeDelta = new Vector2(80, 80);
-        //    dragElement.gameObject.SetActive(false);
-        //}
-
         base.Start();
     }
 
@@ -42,12 +35,10 @@ public class DefenderMenuObject : DraggableWorldObject
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 1000f, layerMask) && hit.collider.CompareTag("SpawnPoint"))
+        if (Physics.Raycast(ray, out hit, 1000f, layerMask))
         {
-            Vector3 worldPoint = hit.point;
-            //Instantiate(prefabToInstantiate, worldPoint, Quaternion.identity);
-
-            if(hit.collider.gameObject.TryGetComponent(out DefenderSpawnPoint sp))
+            var sp = hit.transform.GetComponentInParent<DefenderSpawnPoint>();
+            if (sp != null)
             {
                 sp.SpawnDefender(prefabToInstantiate);
             }

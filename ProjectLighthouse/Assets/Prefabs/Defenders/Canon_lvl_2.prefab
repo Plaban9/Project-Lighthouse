@@ -294,7 +294,7 @@ MonoBehaviour:
   - {fileID: 8913750534900469673}
   - {fileID: 1607958082588611190}
   gunPoints2: []
-  bulletPrefab: {fileID: 5426644676179594552, guid: 35aa40b2618c8844699333754a4a4057,
+  bulletPrefab: {fileID: 5426644676179594552, guid: 6b36cc6ca07cae644827326f99974b20,
     type: 3}
   fireRate: 0.05
   rotationSpeed: 150

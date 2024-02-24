@@ -11,7 +11,7 @@ public enum DefenderSpawnPointStatus
 
 public class DefenderSpawnPoint : MonoBehaviour
 {
-    MeshRenderer baseMesh;
+    [SerializeField] MeshRenderer baseMesh;
     Color originalColor;
     [Header("Spawning")]
     [SerializeField] Transform spawnPosition;
@@ -23,7 +23,6 @@ public class DefenderSpawnPoint : MonoBehaviour
 
     void Start()
     {
-        baseMesh = GetComponent<MeshRenderer>();
         originalColor = baseMesh.material.color;
         DSM = DefenderSpawnManager.Instance;
         cam = Camera.main;
@@ -37,11 +36,18 @@ public class DefenderSpawnPoint : MonoBehaviour
 
     void Update()
     {
+        if (baseMesh.material.color != originalColor)
+        {
+            baseMesh.material.color = originalColor;
+        }
+
         if (!DSM.IsDraggingDefenderFromMenu())
             return;
 
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        bool currentSelectedSlot = Physics.Raycast(ray, out hitData, 1000) && hitData.transform == transform;
+        //Ray ray = cam.ScreenPointToRay(Input.mousePosition);  // Rather than making spawnpoint do all calculation (every frame)
+        Ray ray = DSM.GetMousePositionRelativeToScreen();       // We can use DSM to do it for us just once (every frame)
+        bool currentSelectedSlot = Physics.Raycast(ray, out hitData, 1000) && hitData.transform == baseMesh.transform;
+        Debug.Log(hitData.transform.name);
         if (currentSelectedSlot && status == DefenderSpawnPointStatus.Available)
         {
             baseMesh.material.color = Color.green; // We selecting current gameobject
@@ -50,13 +56,6 @@ public class DefenderSpawnPoint : MonoBehaviour
         {
             baseMesh.material.color = Color.red; // It is already occupied
         }
-        else 
-        {
-            if (baseMesh.material.color != originalColor) 
-            {
-                baseMesh.material.color = originalColor;
-            }
-        }
     }
 
     public void SpawnDefender(GameObject defender)
@@ -64,7 +63,7 @@ public class DefenderSpawnPoint : MonoBehaviour
         if(spawnPosition.childCount == 0)
         {
             var d = Instantiate(defender, spawnPosition.position, Quaternion.identity).GetComponent<DefenderObject>();
-            d.transform.DOScale(3.0f, 0.3f).OnComplete(() => {
+            d.transform.DOScale(10.0f, 0.3f).OnComplete(() => {
                 d.transform.parent = spawnPosition;
                 d.transform.rotation = Quaternion.identity;
                 d.SetDeployed(true);

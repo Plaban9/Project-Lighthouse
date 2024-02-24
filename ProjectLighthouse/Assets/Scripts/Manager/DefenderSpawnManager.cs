@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 
 public class DefenderSpawnManager : MonoBehaviour
 {
@@ -13,7 +10,9 @@ public class DefenderSpawnManager : MonoBehaviour
 
     [SerializeField] List<DefenderSpawnPoint> defenderSPList = new List<DefenderSpawnPoint>();
 
-    [SerializeField] List<RockSpawner> _rockSpawners = new List<RockSpawner>(); 
+    [SerializeField] List<RockSpawner> _rockSpawners = new List<RockSpawner>();
+
+    private Camera _camera;
 
     public static DefenderSpawnManager Instance
     {
@@ -30,7 +29,6 @@ public class DefenderSpawnManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(instance);
     }
 
     private void Start()
@@ -52,16 +50,23 @@ public class DefenderSpawnManager : MonoBehaviour
         }
     }
 
-    public void Init() 
+    public void Init()
     {
-        foreach (var rock in _rockSpawners) 
+        _camera = Camera.main;
+
+        foreach (var rock in _rockSpawners)
         {
             rock.SpawnRock();
         }
 
-        defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
+        defenderSPList = FindObjectsByType<DefenderSpawnPoint>(FindObjectsSortMode.None).ToList(); // More safe
+        //defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
     }
 
+    public Ray GetMousePositionRelativeToScreen()
+    {
+        return _camera.ScreenPointToRay(Input.mousePosition);
+    }
 
     public void SetIsDraggingDefenderFromMenu(bool set)
     {
