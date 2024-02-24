@@ -133,6 +133,7 @@ public class DefenderObject : MonoBehaviour
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
         var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward);
+        Destroy(bullet.gameObject, 10f);
     }
     void Shot2()
     {
@@ -140,6 +141,7 @@ public class DefenderObject : MonoBehaviour
         var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
         var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward);
+        Destroy(bullet.gameObject, 10f);
     }
 
 }

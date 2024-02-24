@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponentInChildren<NavMeshAgent>();
         _lightHouse = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
