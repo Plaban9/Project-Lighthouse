@@ -287,7 +287,7 @@ namespace Menu.MenuCameraControl
 
         public void ToGame()
         {
-            SceneManager.Instance.LoadScene("Gameplay", "CrossFade");
+            SceneManager.Instance.LoadScene("GameplayPrototypeScene", "CrossFade");
         }
 
         public void Back()

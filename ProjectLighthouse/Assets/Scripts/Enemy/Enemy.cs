@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
         //transform.LookAt(_lightHouse);
 
-        if(Physics.CheckSphere(transform.position, 25, _lightHouse.gameObject.layer))
+        if (Physics.CheckSphere(transform.position, 25, _lightHouse.gameObject.layer))
         {
             GameManager.Instance.SetGameOver(true);
         }
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         {
             Idle();
         }
-        else 
+        else
         {
             Walk();
         }
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
         //GameManager.Instance.SetGameOver(true);
         curHp.Value -= dmg;
 
-        if(curHp.Value <= 0)
+        if (curHp.Value <= 0)
         {
             isDead.OnNext(true);
             isDead.Dispose();
@@ -100,13 +100,13 @@ public class Enemy : MonoBehaviour
     #region Animations
 
     //Attack anim
-    private void Attack() 
+    private void Attack()
     {
         _anim.SetTrigger("Attack");
     }
 
     //Hurt anim
-    private void Hurt() 
+    private void Hurt()
     {
         _anim.SetTrigger("Hurt");
     }
@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
         _anim.SetBool("Walk", true);
     }
 
-    private void Die() 
+    private void Die()
     {
         _anim.SetTrigger("Die");
     }

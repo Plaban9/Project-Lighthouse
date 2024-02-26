@@ -1,3 +1,5 @@
+using LighthouseGames.UI.Effects;
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,12 +14,26 @@ public class LighthouseHandler : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource _waves;
     [SerializeField] private AudioClip _siren;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _musicAudioSource;
+    [SerializeField] private AudioSource _sfxAudioSource;
+
+    [Header("UI")]
+    [SerializeField] private LightBeamColorChanger _canvasNightNotifyEffect;
 
     // Start is called before the first frame update
     void Awake()
     {
+        
+    }
+
+    private void OnEnable()
+    {
         TimeController.dayNightCycleStartNotifier += DayNightEventHandler;
+    }
+
+    private void OnDisable()
+    {
+        TimeController.dayNightCycleStartNotifier -= DayNightEventHandler;
     }
 
     private void Start()
@@ -25,6 +41,11 @@ public class LighthouseHandler : MonoBehaviour
         if (_waves != null)
         {
             _waves.Play();
+        }
+
+        if (_canvasNightNotifyEffect == null)
+        {
+            _canvasNightNotifyEffect = FindAnyObjectByType<LightBeamColorChanger>();
         }
     }
 
@@ -55,9 +76,9 @@ public class LighthouseHandler : MonoBehaviour
             _lighthouseMaterial.DisableKeyword("_EMISSION");
         }
 
-        if (_audioSource != null)
+        if (_musicAudioSource != null)
         {
-            _audioSource.Play();
+            _musicAudioSource.Play();
         }
     }
 
@@ -65,14 +86,22 @@ public class LighthouseHandler : MonoBehaviour
     {
         d("Night Started");
 
-        if (_audioSource != null)
+        if (_musicAudioSource != null)
         {
-            _audioSource.Stop();
+            _musicAudioSource.Stop();
         }
 
         if (_siren != null)
         {
-            AudioSource.PlayClipAtPoint(_siren, transform.position, 5f);
+            d("Playing Siren");
+            _sfxAudioSource.PlayOneShot(_siren, 2f);
+            ////_sfxAudioSource.Play();
+            //AudioSource.PlayClipAtPoint(_siren, transform.position);
+
+            if (_canvasNightNotifyEffect != null)
+            {
+                _canvasNightNotifyEffect.TriggerEffect();
+            }
 
             StartCoroutine(nameof(IlluminateLighthouse), _siren.length);
         }

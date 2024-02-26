@@ -1571,6 +1571,129 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationDegressPerSecond: 7.5
+--- !u!1001 &542233553
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957950749947071961, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581846947004147058, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778203317593271158, guid: ecf8204b6a052b241bf11d132568a47f,
+        type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecf8204b6a052b241bf11d132568a47f, type: 3}
 --- !u!1 &550492078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3744,6 +3867,7 @@ GameObject:
   - component: {fileID: 1061614894}
   - component: {fileID: 1061614895}
   - component: {fileID: 1061614896}
+  - component: {fileID: 1061614897}
   m_Layer: 0
   m_Name: Lighthouse
   m_TagString: Untagged
@@ -3785,7 +3909,9 @@ MonoBehaviour:
   _lighthouseMaterial: {fileID: 2100000, guid: 1847091a077850e4ba0ef8ff5bb9a87c, type: 2}
   _waves: {fileID: 1061614896}
   _siren: {fileID: 8300000, guid: 9816a378feab1ae4cae093bdf957130e, type: 3}
-  _audioSource: {fileID: 1061614895}
+  _musicAudioSource: {fileID: 1061614896}
+  _sfxAudioSource: {fileID: 1061614897}
+  _canvasNightNotifyEffect: {fileID: 0}
 --- !u!82 &1061614895
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3939,6 +4065,102 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1061614897
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061614892}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5969,7 +6191,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _maxSunlightIntensity: 2
   _maxMoonlightIntensity: 0.25
-  _maxFogIntensity: 0.0125
+  _maxFogIntensity: 0.001
   _fogColor:
     serializedVersion: 2
     key0: {r: 1, g: 0.9764151, b: 0.9764151, a: 1}
@@ -6883,7 +7105,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 7
@@ -7162,3 +7384,4 @@ SceneRoots:
   - {fileID: 481093078}
   - {fileID: 991294202}
   - {fileID: 1461065634}
+  - {fileID: 542233553}

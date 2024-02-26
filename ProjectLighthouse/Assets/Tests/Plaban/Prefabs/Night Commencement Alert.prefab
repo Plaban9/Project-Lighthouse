@@ -247,7 +247,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -2.320984, y: 328}
-  m_SizeDelta: {x: 225, y: 200}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1000567060755068871
 CanvasRenderer:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf07c58b85f311f409b56403a461448f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b51d0b437871324ba7acc687366cfba, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -328,7 +328,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5445871688130941308}
-  m_LocalRotation: {x: -0, y: -0, z: 0.8701839, w: 0.49272716}
+  m_LocalRotation: {x: -0, y: -0, z: 0.35384798, w: 0.935303}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0015066, y: 1.0015066, z: 1}
   m_ConstrainProportionsScale: 0
@@ -337,7 +337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -122.15601, y: 11.88916}
+  m_AnchoredPosition: {x: -18.101562, y: -87.76783}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8711477464181354952
@@ -578,3 +578,4 @@ MonoBehaviour:
   _lightRayMask: {fileID: 4649842085361710181}
   _lightSource: {fileID: 4301639379968373755}
   _themeColor: {r: 1, g: 1, b: 0, a: 1}
+  _lightAnimator: {fileID: 2022252951324872685}

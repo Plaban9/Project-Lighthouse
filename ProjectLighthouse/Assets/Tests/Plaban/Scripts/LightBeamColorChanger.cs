@@ -24,6 +24,7 @@ namespace LighthouseGames.UI.Effects
 
         [Header("Global Settings")]
         [SerializeField] Color _themeColor;
+        [SerializeField] Animator _lightAnimator;
 
         private void Awake()
         {
@@ -46,6 +47,11 @@ namespace LighthouseGames.UI.Effects
             if (_lightSource != null)
             {
                 _lightSource.color = new Color(_themeColor.r, _themeColor.g, _themeColor.b);
+            }
+
+            if (_lightAnimator == null)
+            {
+                _lightAnimator = GetComponent<Animator>();
             }
         }
 
@@ -82,6 +88,12 @@ namespace LighthouseGames.UI.Effects
             }
 
             D("Error in changing color. One of the references are not assigned");
+        }
+
+
+        public void TriggerEffect()
+        {
+            _lightAnimator.SetTrigger("Enable");
         }
 
         private static void D(string message)
