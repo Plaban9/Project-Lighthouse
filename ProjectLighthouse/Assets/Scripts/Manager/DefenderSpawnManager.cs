@@ -14,6 +14,16 @@ public class DefenderSpawnManager : MonoBehaviour
 
     private Camera _camera;
 
+    private void OnEnable()
+    {
+        TimeController.dayNightCycleStartNotifier += DayNightEventHandler;
+    }
+
+    private void OnDisable()
+    {
+        TimeController.dayNightCycleStartNotifier -= DayNightEventHandler;
+    }
+
     public static DefenderSpawnManager Instance
     {
         get
@@ -74,4 +84,40 @@ public class DefenderSpawnManager : MonoBehaviour
     }
 
     public bool IsDraggingDefenderFromMenu() => isDraggingDefenderFromMenu;
+
+
+    private void DayNightEventHandler(DayNightCycle dayNightCycle)
+    {
+        switch (dayNightCycle)
+        {
+            case DayNightCycle.DAY:
+                OnDayStarted();
+                break;
+            case DayNightCycle.NIGHT:
+                OnNightStarted();
+                break;
+        }
+    }
+
+    private void OnDayStarted()
+    {
+        d("Day Started");
+        foreach (var rock in _rockSpawners)
+        {
+            rock.SpawnRock();
+        }
+
+        defenderSPList = FindObjectsByType<DefenderSpawnPoint>(FindObjectsSortMode.None).ToList(); // More safe
+        //defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
+    }
+
+    private void OnNightStarted()
+    {
+        d("Night Started");
+    }
+
+    private static void d(string message)
+    {
+        Debug.Log("<<DefenderSpawnManager>> " + message);
+    }
 }
