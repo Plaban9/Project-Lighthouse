@@ -10,8 +10,6 @@ public class DefenderObject : MonoBehaviour
     [SerializeField] List<Transform> gunPoints = new List<Transform>();
     [SerializeField] List<Transform> gunPoints2 = new List<Transform>();
 
-    Animator animator;
-
     [Header("Fire Info")]
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float fireRate = 0.2f;
@@ -30,11 +28,7 @@ public class DefenderObject : MonoBehaviour
     [SerializeField] Enemy targetEnemy = null;
     RaycastHit hitInfo;
     bool isDeployed = false;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
+    Collider[] enemyContailer = new Collider[20];
 
     private void Start()
     {
@@ -51,13 +45,17 @@ public class DefenderObject : MonoBehaviour
     {
         if (!isDeployed) return;
 
-        var encounterEnemy = Physics.OverlapSphere(vision.position, visionRadius, targetMask);
+        enemyContailer = Physics.OverlapSphere(vision.position, visionRadius, targetMask);
 
-        if(encounterEnemy.Length > 0)
+        if(enemyContailer.Length > 0)
         {
+            // If enemy is out of range
+            if (!enemyContailer.Select(x => x.GetComponent<Enemy>()).ToList().Contains(targetEnemy))
+                targetEnemy = null;
+
             if (targetEnemy == null || targetEnemy.IsDead())
             {
-                var search = encounterEnemy.FirstOrDefault(x => !x.GetComponent<Enemy>().IsDead());
+                var search = enemyContailer.FirstOrDefault(x => !x.GetComponent<Enemy>().IsDead());
                 var newTarget = search != null ? search.GetComponent<Enemy>() : null;
 
                 if (newTarget != null)
@@ -124,12 +122,10 @@ public class DefenderObject : MonoBehaviour
     public void SetDeployed(bool set)
     {
         isDeployed = set;
-        animator.speed = 1 / fireRate;
     }
 
     void Shot()
     {
-        animator.SetTrigger("Shoot");
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
         var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward);
@@ -137,11 +133,9 @@ public class DefenderObject : MonoBehaviour
     }
     void Shot2()
     {
-        animator.SetTrigger("Shoot");
         var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
         var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward);
         Destroy(bullet.gameObject, 10f);
     }
-
 }

@@ -15,6 +15,7 @@ public class DefenderSpawnPoint : MonoBehaviour
     Color originalColor;
     [Header("Spawning")]
     [SerializeField] Transform spawnPosition;
+    [SerializeField] float spawnScale = 3f;
 
     DefenderSpawnPointStatus status;
     RaycastHit hitData;
@@ -47,7 +48,6 @@ public class DefenderSpawnPoint : MonoBehaviour
         //Ray ray = cam.ScreenPointToRay(Input.mousePosition);  // Rather than making spawnpoint do all calculation (every frame)
         Ray ray = DSM.GetMousePositionRelativeToScreen();       // We can use DSM to do it for us just once (every frame)
         bool currentSelectedSlot = Physics.Raycast(ray, out hitData, 1000) && hitData.transform == baseMesh.transform;
-        Debug.Log(hitData.transform.name);
         if (currentSelectedSlot && status == DefenderSpawnPointStatus.Available)
         {
             baseMesh.material.color = Color.green; // We selecting current gameobject
@@ -63,7 +63,7 @@ public class DefenderSpawnPoint : MonoBehaviour
         if(spawnPosition.childCount == 0)
         {
             var d = Instantiate(defender, spawnPosition.position, Quaternion.identity).GetComponent<DefenderObject>();
-            d.transform.DOScale(10.0f, 0.3f).OnComplete(() => {
+            d.transform.DOScale(spawnScale, 0.3f).OnComplete(() => {
                 d.transform.parent = spawnPosition;
                 d.transform.rotation = Quaternion.identity;
                 d.SetDeployed(true);

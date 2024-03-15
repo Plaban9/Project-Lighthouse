@@ -28,11 +28,10 @@ public class EnemySpawnManager : MonoBehaviour
 
     void SpawnEnemy() 
     {
-        int spawnIndex = Random.Range(0, _respawnPoints.Count - 1);
-        Enemy spawn = Instantiate(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count - 1)]);
+        var spawnPoint = _respawnPoints[Random.Range(0, _respawnPoints.Count - 1)];
+        Enemy selectedEnemyPrefab = _enemyPrefabs[Random.Range(0, _enemyPrefabs.Count - 1)];
+        Enemy spawn = Instantiate(selectedEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
         _currentEnemyList.Add(spawn.gameObject);
-
-        spawn.transform.position = _respawnPoints[spawnIndex].position;
     }
 
     public void Reset()
