@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
 {
+    [Header("Spawn Settings")]
+    [SerializeField] private float spawnInterval = 2f;
+
     [SerializeField]
     private List<Enemy> _enemyPrefabs = new List<Enemy>();
 
@@ -14,7 +17,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0, 5f);
+        InvokeRepeating(nameof(SpawnEnemy), spawnInterval, spawnInterval);
     }
 
     // Update is called once per frame

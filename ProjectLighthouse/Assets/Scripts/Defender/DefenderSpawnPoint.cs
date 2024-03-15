@@ -17,6 +17,9 @@ public class DefenderSpawnPoint : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     [SerializeField] float spawnScale = 3f;
 
+    [Header("Particle Effect")]
+    [SerializeField] private ParticleSystem spawnEffect;
+
     DefenderSpawnPointStatus status;
     RaycastHit hitData;
     DefenderSpawnManager DSM;
@@ -71,7 +74,7 @@ public class DefenderSpawnPoint : MonoBehaviour
 
             //d.transform.position = spawnPosition.position;
             status = DefenderSpawnPointStatus.Occupied;
-
+            spawnEffect.Play();
         }
     }
 
