@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511981b6c2146894fbd87855374f98a6, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  musicLibrary:
+  - name: Menu
+    musicType: 1
+    audioClip: {fileID: 8300000, guid: 76c3231b9b8e609499ad2e431160d632, type: 3}
+    volume: 0.708
+    shouldLoop: 0
+  - name: Gameplay
+    musicType: 0
+    audioClip: {fileID: 8300000, guid: 3e08b13cc543e774b85232cc8c1c9868, type: 3}
+    volume: 0.824
+    shouldLoop: 0
+  soundLibrary:
+  - name: Spawn
+    soundType: 0
+    clips:
+    - {fileID: 8300000, guid: a92bf7e681b474040aacbd714edd55d0, type: 3}
+    - {fileID: 8300000, guid: 9816a378feab1ae4cae093bdf957130e, type: 3}
+    volume: 0.708

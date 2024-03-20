@@ -1,5 +1,9 @@
 using LighthouseGames.SceneUtilities;
 
+using Minimalist.Audio;
+using Minimalist.Audio.Music;
+using Minimalist.Audio.Sound;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +25,21 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.Instance.LoadScene(sceneName, transitionName);
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            AudioManager.PlayMusic(MusicType.Gameplay);
+        } 
+        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AudioManager.PlayMusic(MusicType.Menu);
+        } 
+        
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            AudioManager.PlaySFX(SoundType.Player_Spawn);
         }
     }
 }
