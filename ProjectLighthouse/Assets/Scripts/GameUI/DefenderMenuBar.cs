@@ -27,8 +27,7 @@ public class DefenderMenuBar : MonoBehaviour
                 menuBarGO.transform.DOScale(Vector3.one, .25f).SetEase(Ease.InQuint);
                 break;
             case DayNightCycle.NIGHT:
-                menuBarGO.transform.DOScale(Vector3.zero, .25f).SetEase(Ease.InQuint);
-                OnMenuToggled(false);
+                menuBarGO.transform.DOScale(Vector3.zero, .25f).SetEase(Ease.InQuint).OnComplete(() => OnMenuToggled(false));
                 break;
         }
     }
