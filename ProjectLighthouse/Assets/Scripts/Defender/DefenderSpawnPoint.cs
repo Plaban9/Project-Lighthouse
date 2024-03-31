@@ -55,7 +55,7 @@ public class DefenderSpawnPoint : MonoBehaviour
         {
             baseMesh.material.color = Color.green; // We selecting current gameobject
         }
-        else if (currentSelectedSlot && status == DefenderSpawnPointStatus.Occupied)
+        if (status == DefenderSpawnPointStatus.Occupied)
         {
             baseMesh.material.color = Color.red; // It is already occupied
         }

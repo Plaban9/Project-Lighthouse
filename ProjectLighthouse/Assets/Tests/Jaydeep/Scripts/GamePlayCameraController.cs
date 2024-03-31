@@ -7,7 +7,10 @@ namespace LighthouseGames.MainMenu
 {
     public class GamePlayCameraController : MonoBehaviour
     {
-        [SerializeField] private CinemachineVirtualCameraBase gameplayCam;
+        [SerializeField] private CinemachineFreeLook gameplayCam;
+
+        // TODO: MOVE UI STUFF TO GamePlayUIManager Script (need to create new script)
+        [SerializeField] private GameObject camToggleGO;
 
         private CinemachineBrain cinemachineBrain;
 
@@ -21,11 +24,23 @@ namespace LighthouseGames.MainMenu
         private void Start()
         {
             cinemachineBrain.ManualUpdate();
+
+#if UNITY_ANDROID
+            gameplayCam.m_YAxis.m_InputAxisName = "Mouse Y";
+            camToggleGO.SetActive(true);
+#else
+            gameplayCam.m_YAxis.m_InputAxisName = "Mouse ScrollWheel";
+            camToggleGO.SetActive(false);
+#endif
         }
 
         private void Update()
         {
-            //canRotateCam = Input.GetMouseButton(1);
+#if !UNITY_ANDROID
+            canRotateCam = Input.GetMouseButton(1);
+#else
+            canRotateCam = Input.touchCount == 2;
+#endif
             if (canRotateCam)
             {
                 cinemachineBrain.ManualUpdate();

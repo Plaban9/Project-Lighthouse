@@ -13,6 +13,7 @@ public class DefenderSpawnManager : MonoBehaviour
     [SerializeField] List<RockSpawner> _rockSpawners = new List<RockSpawner>();
 
     private Camera _camera;
+    private Ray ray;
 
     private void OnEnable()
     {
@@ -49,7 +50,7 @@ public class DefenderSpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ray = _camera.ScreenPointToRay(Input.mousePosition);
     }
 
     public void Reset()
@@ -75,7 +76,7 @@ public class DefenderSpawnManager : MonoBehaviour
 
     public Ray GetMousePositionRelativeToScreen()
     {
-        return _camera.ScreenPointToRay(Input.mousePosition);
+        return ray;
     }
 
     public void SetIsDraggingDefenderFromMenu(bool set)

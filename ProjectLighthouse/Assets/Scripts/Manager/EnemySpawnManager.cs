@@ -15,9 +15,32 @@ public class EnemySpawnManager : MonoBehaviour
 
     private List<GameObject> _currentEnemyList = new List<GameObject>();
 
-    private void Start()
+    private void OnEnable()
     {
-        InvokeRepeating(nameof(SpawnEnemy), spawnInterval, spawnInterval);
+        TimeController.dayNightCycleStartNotifier += DayNightCycle;
+    }
+
+    private void OnDisable()
+    {
+        TimeController.dayNightCycleStartNotifier -= DayNightCycle;
+    }
+
+    private void DayNightCycle(DayNightCycle cycle)
+    {
+        switch (cycle)
+        {
+            case global::DayNightCycle.DAY:
+                Debug.Log("Enemy Spawn Over");
+                CancelInvoke(nameof(SpawnEnemy));
+                break;
+            case global::DayNightCycle.NIGHT:
+                Debug.Log("Enemy Spawn Started");
+                InvokeRepeating(nameof(SpawnEnemy), spawnInterval, spawnInterval);
+                break;
+            default:
+                Debug.LogError("DayNight Cycle Not Implemented: " + cycle);
+                break;
+        }
     }
 
     // Update is called once per frame
