@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DragAndDropScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Tests/Plaban/Scenes/Gameplay.unity
     guid: d524517fc18aad1428a814b561cd16bc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Tests/Plaban/Scenes/Menu.unity
     guid: f4abe1e339f591241a2777ebb02ae475
-  - enabled: 1
+  - enabled: 0
     path: Assets/Tests/Jaydeep/GamePlayTemplateScene.unity
     guid: be585fcee012b96468fafc8ba59ec819
   - enabled: 1
