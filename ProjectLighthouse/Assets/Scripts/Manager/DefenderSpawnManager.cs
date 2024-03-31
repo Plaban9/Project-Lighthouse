@@ -102,12 +102,12 @@ public class DefenderSpawnManager : MonoBehaviour
     private void OnDayStarted()
     {
         d("Day Started");
-        foreach (var rock in _rockSpawners)
+        //foreach (var rock in _rockSpawners)
         {
-            rock.SpawnRock();
+            //rock.SpawnRock();
         }
 
-        defenderSPList = FindObjectsByType<DefenderSpawnPoint>(FindObjectsSortMode.None).ToList(); // More safe
+        //defenderSPList = FindObjectsByType<DefenderSpawnPoint>(FindObjectsSortMode.None).ToList(); // More safe
         //defenderSPList = GameObject.FindGameObjectsWithTag("SpawnPoint").Select(x => x.GetComponent<DefenderSpawnPoint>()).ToList();
     }
 

@@ -14,6 +14,7 @@ namespace Menu.ClickableMenuObjects
 
         private Material _mat;
         private Vector3 _originalScale;
+
         void Start()
         {
             _originalScale = transform.localScale;
@@ -39,8 +40,6 @@ namespace Menu.ClickableMenuObjects
         public void DisableHighlight()
         {
             _mat.color = Color.gray;
-
         }
     }
-
 }

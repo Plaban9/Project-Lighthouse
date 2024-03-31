@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 7537a739fe77161428a7ec9befacde80
+  - enabled: 1
+    path: Assets/Scenes/GameplayPrototypeScene.unity
+    guid: 224d7286e72ff5c4793ffae09a43a4fe
+  - enabled: 1
     path: Assets/Scenes/DragAndDropScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
@@ -17,10 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tests/Jaydeep/GamePlayTemplateScene.unity
     guid: be585fcee012b96468fafc8ba59ec819
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 7537a739fe77161428a7ec9befacde80
-  - enabled: 1
-    path: Assets/Scenes/GameplayPrototypeScene.unity
-    guid: 224d7286e72ff5c4793ffae09a43a4fe
   m_configObjects: {}

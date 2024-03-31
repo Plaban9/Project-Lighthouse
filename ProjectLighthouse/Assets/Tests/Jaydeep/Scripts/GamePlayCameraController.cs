@@ -10,12 +10,12 @@ namespace LighthouseGames.MainMenu
         [SerializeField] private CinemachineVirtualCameraBase gameplayCam;
 
         private CinemachineBrain cinemachineBrain;
-        private CinemachineBrain.UpdateMethod _backupUpdateMethod;
+
+        private bool canRotateCam;
 
         private void Awake()
         {
             cinemachineBrain = GetComponentInParent<CinemachineBrain>();
-            _backupUpdateMethod = cinemachineBrain.m_UpdateMethod;
         }
 
         private void Start()
@@ -25,17 +25,16 @@ namespace LighthouseGames.MainMenu
 
         private void Update()
         {
-            if (Input.GetMouseButton(1))
+            //canRotateCam = Input.GetMouseButton(1);
+            if (canRotateCam)
             {
                 cinemachineBrain.ManualUpdate();
             }
         }
 
-        private void SetUpGameplayCamera()
+        public void ToggleCameraRot(bool value)
         {
-            gameplayCam.Priority = 20;
-            cinemachineBrain.m_UpdateMethod = CinemachineBrain.UpdateMethod.ManualUpdate;
+            canRotateCam = value;
         }
     }
-
 }
