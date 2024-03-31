@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2741258013099512756}
   - component: {fileID: 1214455391461356134}
   m_Layer: 8
-  m_Name: ArrowProjectile
+  m_Name: Projectile_Ballista_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

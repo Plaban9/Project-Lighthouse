@@ -88,6 +88,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1693629206895905310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6000159755765362682}
+  m_Layer: 0
+  m_Name: RotationPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6000159755765362682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693629206895905310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3035623814172536709}
+  m_Father: {fileID: 3024254642113648387}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2591208660738667390
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,11 +251,11 @@ Transform:
   m_GameObject: {fileID: 3364006174521529681}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0017073512, y: 0.35099983, z: 0.27072573}
+  m_LocalPosition: {x: 0, y: 0, z: 2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7264872171505977527}
+  m_Father: {fileID: 6000159755765362682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4257918406490279936
 GameObject:
@@ -236,7 +268,7 @@ GameObject:
   - component: {fileID: 3024254642113648387}
   - component: {fileID: 7441705230852067522}
   m_Layer: 0
-  m_Name: ArcherTowerTest
+  m_Name: Tower_Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,6 +291,7 @@ Transform:
   - {fileID: 7264872171505977527}
   - {fileID: 3649894200539566841}
   - {fileID: 4106873292448035285}
+  - {fileID: 6000159755765362682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7441705230852067522
@@ -273,16 +306,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc98dfde4ac3fa44bb4902a9dd51bfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunRotationPart: {fileID: 7264872171505977527}
+  gunRotationPart: {fileID: 6000159755765362682}
   gunPoints:
   - {fileID: 3035623814172536709}
   gunPoints2: []
-  bulletPrefab: {fileID: 5426644676179594552, guid: af658a5d17a592b4f8950e205a5f6b74,
+  bulletPrefab: {fileID: 5426644676179594552, guid: f5d2742a9d577714f8485f8f9ff71222,
     type: 3}
-  fireRate: 3
-  rotationSpeed: 150
+  fireRate: 0.25
+  rotationSpeed: 100
   vision: {fileID: 7264872171505977527}
-  visionRadius: 50
+  visionRadius: 100
   targetMask:
     serializedVersion: 2
     m_Bits: 128
@@ -394,11 +427,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8184111375889616347}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3035623814172536709}
+  m_Children: []
   m_Father: {fileID: 3024254642113648387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

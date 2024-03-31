@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3105840835263302419}
   - component: {fileID: 3831736866331328881}
   m_Layer: 0
-  m_Name: CanonTower
+  m_Name: Tower_Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
