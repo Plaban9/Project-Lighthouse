@@ -5,31 +5,32 @@ using DG.Tweening;
 
 public class DefenderMenuBar : MonoBehaviour
 {
+    [SerializeField] GameObject menuBarGO;
     [SerializeField] GameObject expandButton;
     [SerializeField] Transform turrentsMenuUI;
 
-    RectTransform rectTransform;
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        rectTransform = GetComponent<RectTransform>();
+        TimeController.dayNightCycleStartNotifier += DayCycle;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        TimeController.dayNightCycleStartNotifier -= DayCycle;
     }
 
-    public void OnClickExpandButton()
+    private void DayCycle(DayNightCycle cycle)
     {
-        expandButton.gameObject.SetActive(false);
-        rectTransform.DOMoveY(0, 0.25f).SetEase(Ease.InQuart);
-    }
-
-    public void OnClickCollapseButton()
-    {
-        rectTransform.DOMoveY(-230, 0.25f).SetEase(Ease.InQuart).onComplete += () => { expandButton.gameObject.SetActive(true); };
+        switch (cycle)
+        {
+            case DayNightCycle.DAY:
+                menuBarGO.transform.DOScale(Vector3.one, .25f).SetEase(Ease.InQuint);
+                break;
+            case DayNightCycle.NIGHT:
+                menuBarGO.transform.DOScale(Vector3.zero, .25f).SetEase(Ease.InQuint);
+                OnMenuToggled(false);
+                break;
+        }
     }
 
     public void OnMenuToggled(bool isExpanded)
