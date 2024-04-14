@@ -25,6 +25,8 @@ public class DefenderSpawnPoint : MonoBehaviour
     DefenderSpawnManager DSM;
     Camera cam;
 
+    DefenderData defenderData;
+
     void Start()
     {
         originalColor = baseMesh.material.color;
@@ -61,7 +63,7 @@ public class DefenderSpawnPoint : MonoBehaviour
         }
     }
 
-    public void SpawnDefender(GameObject defender)
+    public void SpawnDefender(GameObject defender, DefenderData data)
     {
         if(spawnPosition.childCount == 0)
         {
@@ -75,6 +77,9 @@ public class DefenderSpawnPoint : MonoBehaviour
             //d.transform.position = spawnPosition.position;
             status = DefenderSpawnPointStatus.Occupied;
             spawnEffect.Play();
+
+            defenderData = data;
+            CurrencyManager.Instance.AddCoin(-data.cost);
         }
     }
 

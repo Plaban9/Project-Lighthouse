@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
 
     ReactiveProperty<bool> isGameOver = new ReactiveProperty<bool>(false);
-
+    
     public static GameManager Instance => instance;
 
     void Awake()
@@ -39,4 +39,5 @@ public class GameManager : MonoBehaviour
 
         isGameOver.Value = false;
     }
+
 }

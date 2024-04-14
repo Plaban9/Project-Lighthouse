@@ -102,15 +102,8 @@ MonoBehaviour:
   gunPoints:
   - {fileID: 6176401022650557501}
   gunPoints2: []
-  bulletPrefab: {fileID: 1799002537151645776, guid: 014e870dab061ef4aa3849ee47d1f15d,
-    type: 3}
-  fireRate: 1
-  rotationSpeed: 300
+  defenderData: {fileID: 11400000, guid: b359ab38709de4245a887f4ee524672d, type: 2}
   vision: {fileID: 2793159461591790104}
-  visionRadius: 120
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
   targetEnemy: {fileID: 0}
 --- !u!1 &2704886543147216524
 GameObject:

@@ -7,7 +7,6 @@ namespace Menu.MenuCameraControl
     using System.Collections.Generic;
     using TMPro;
     using UnityEngine;
-    using static UnityEngine.Rendering.DebugUI;
 
     public class MenuCameraControl : MonoBehaviour
     {

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxHp = 10f;
     [SerializeField] ReactiveProperty<float> curHp = new ReactiveProperty<float>();
     [SerializeField] private Animator _anim;
+    [SerializeField] int dropCoins = 100;
     private NavMeshAgent _agent;
     private Transform _lightHouse;
     Subject<bool> isDead = new Subject<bool>();
@@ -63,10 +64,14 @@ public class Enemy : MonoBehaviour
     public void ReceiveDamage(float dmg)
     {
         //GameManager.Instance.SetGameOver(true);
+        if (curHp.Value <= 0) return;
+
         curHp.Value -= dmg;
 
         if (curHp.Value <= 0)
         {
+            CurrencyManager.Instance.AddCoin(dropCoins);
+
             isDead.OnNext(true);
             isDead.Dispose();
             StartCoroutine(PerformDead());

@@ -178,10 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794aa77091f6f614f977ad89bca1f278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 200
+  maxHp: 100
   curHp:
     value: 0
   _anim: {fileID: 869452694916264622}
+  dropCoins: 100
 --- !u!1001 &865462541424003668
 PrefabInstance:
   m_ObjectHideFlags: 0

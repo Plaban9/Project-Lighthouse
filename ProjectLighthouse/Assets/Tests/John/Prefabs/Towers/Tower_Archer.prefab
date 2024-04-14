@@ -310,6 +310,7 @@ MonoBehaviour:
   gunPoints:
   - {fileID: 3035623814172536709}
   gunPoints2: []
+  defenderData: {fileID: 11400000, guid: 75ccbf0c18b8148f484c130a8b2b5d04, type: 2}
   bulletPrefab: {fileID: 5426644676179594552, guid: f5d2742a9d577714f8485f8f9ff71222,
     type: 3}
   fireRate: 0.25
