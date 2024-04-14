@@ -51,13 +51,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthStrength: 0.05
-    - _FoamAmount: 16.65
-    - _FoamCutoff: 49.65
-    - _FoamScale: 1000
+    - _DepthStrength: 0.03
+    - _FoamAmount: 60.1
+    - _FoamCutoff: 11.8
+    - _FoamScale: 1440.8
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaterDepth: 7.67
+    - _WaterDepth: -8.12
     - _WaterDisplacement: 3
     - _WaterRippleDensity: 1000
     - _WaterRippleIntensity: 20
