@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
     {
         curHp.Value = maxHp;
         _agent.speed = _agent.speed * _movespeed;
+        _agent.angularSpeed = _agent.angularSpeed * _movespeed;
+
         _agent.SetDestination(_lightHouse.position);
 
     }
