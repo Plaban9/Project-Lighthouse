@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Animator _anim;
     [SerializeField] private EnemyHealthBar _healthBar;
+    [SerializeField] int dropCoins = 100;
     private NavMeshAgent _agent;
     private Transform _lightHouse;
     Subject<bool> isDead = new Subject<bool>();
@@ -92,12 +93,16 @@ public class Enemy : MonoBehaviour
     public void ReceiveDamage(float dmg)
     {
         //GameManager.Instance.SetGameOver(true);
+        if (curHp.Value <= 0) return;
+
         curHp.Value -= dmg;
         _healthBar.SetPercentHP(curHp.Value / maxHp);
         Hurt();
 
         if (curHp.Value <= 0)
         {
+            CurrencyManager.Instance.AddCoin(dropCoins);
+
             isDead.OnNext(true);
             isDead.Dispose();
             StartCoroutine(PerformDead());

@@ -12,9 +12,7 @@ public class DefenderObject : MonoBehaviour
     [SerializeField] List<Transform> gunPoints2 = new List<Transform>();
 
     [Header("Fire Info")]
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] float fireRate = 0.2f;
-    [SerializeField] float rotationSpeed = 150f;
+    [SerializeField] DefenderData defenderData;
     private float fireTimer = 0f;
     private float fireTimer2 = 0f;
     private int curGunPointIndex = 0;
@@ -22,8 +20,6 @@ public class DefenderObject : MonoBehaviour
 
     [Header("Vision")]
     [SerializeField] Transform vision;
-    [SerializeField] float visionRadius = 10f;
-    [SerializeField] LayerMask targetMask;
 
     [Header("Target Enemy")]
     [SerializeField] Enemy targetEnemy = null;
@@ -39,7 +35,7 @@ public class DefenderObject : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(vision.position, visionRadius);
+        Gizmos.DrawWireSphere(vision.position, defenderData.visionRadius);
     }
 
     // Update is called once per frame
@@ -47,9 +43,10 @@ public class DefenderObject : MonoBehaviour
     {
         if (!isDeployed) return;
 
-        if (!EditorApplication.isPlaying || EditorApplication.isPaused) return;
+        var visionRadius = defenderData.visionRadius;
+        enemyContailer = Physics.OverlapSphere(vision.position, visionRadius, defenderData.targetMask);
 
-        enemyContailer = Physics.OverlapSphere(vision.position, visionRadius, targetMask);
+        if (!EditorApplication.isPlaying || EditorApplication.isPaused) return;
 
         if(enemyContailer.Length > 0)
         {
@@ -82,19 +79,20 @@ public class DefenderObject : MonoBehaviour
 
         if (targetEnemy != null)
         {
-            var direction = (targetEnemy.transform.position - gunRotationPart.position).normalized;
+            var direction = (targetEnemy.transform.position - gunPoints[0].position).normalized;
             var targetRotation = Quaternion.LookRotation(direction);
-           
-            gunRotationPart.rotation = Quaternion.RotateTowards(gunRotationPart.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            gunRotationPart.rotation = Quaternion.RotateTowards(gunRotationPart.rotation, targetRotation, defenderData.rotationSpeed * Time.deltaTime);
 
             fireTimer += Time.deltaTime;
             foreach (var gunPoint in gunPoints)
             {
-                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, targetMask))
+                //if(gunRotationPart.rotation.y == targetRotation.y)
+                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, defenderData.targetMask))
                 {
                     if (hitInfo.transform.TryGetComponent(out Enemy enemy))
                     {
-                        if (fireTimer >= fireRate)
+                        if (fireTimer >= defenderData.fireRate)
                         {
                             fireTimer = 0;
                             //Shot();
@@ -109,11 +107,11 @@ public class DefenderObject : MonoBehaviour
             fireTimer2 += Time.deltaTime;
             foreach (var gunPoint in gunPoints2)
             {
-                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, targetMask))
+                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, defenderData.targetMask))
                 {
                     if (hitInfo.transform.TryGetComponent(out Enemy enemy))
                     {
-                        if (fireTimer2 >= fireRate)
+                        if (fireTimer2 >= defenderData.fireRate)
                         {
                             fireTimer2 = 0;
                             //Shot2();
@@ -142,15 +140,17 @@ public class DefenderObject : MonoBehaviour
     void Shot()
     {
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
-        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
+        var bullet = Instantiate(defenderData.projectilePrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward, targetEnemy.transform);
         Destroy(bullet.gameObject, 10f);
     }
     void Shot2()
     {
-        var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
-        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
+        var gunPoint = gunPoints2[curGunPointIndex++ % gunPoints2.Count];
+        var bullet = Instantiate(defenderData.projectilePrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward, targetEnemy.transform);
         Destroy(bullet.gameObject, 10f);
     }
+
+    public DefenderData GetDefenderData() => defenderData;
 }

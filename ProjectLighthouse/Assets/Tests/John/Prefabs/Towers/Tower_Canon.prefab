@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3901608680678855247}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: C_tower_1_rig1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3105840835263302419}
   - component: {fileID: 3831736866331328881}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tower_Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,15 +84,8 @@ MonoBehaviour:
   gunPoints:
   - {fileID: 5447424597513162852}
   gunPoints2: []
-  bulletPrefab: {fileID: 5426644676179594552, guid: 398c7bb583c58a141a2046a6baa15737,
-    type: 3}
-  fireRate: 1.5
-  rotationSpeed: 300
+  defenderData: {fileID: 11400000, guid: 46ada9b81559a46088e0efe300e5f0eb, type: 2}
   vision: {fileID: 2096137301712485444}
-  visionRadius: 150
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
   targetEnemy: {fileID: 0}
 --- !u!1 &442893656602036314
 GameObject:
@@ -103,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8746369272300226682}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: GunRotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6108012976848766175}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +163,7 @@ GameObject:
   - component: {fileID: 2626442834541722969}
   - component: {fileID: 7259825154454482520}
   - component: {fileID: 3822347852682725011}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: hex_forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +268,7 @@ GameObject:
   - component: {fileID: 1560476655046769024}
   - component: {fileID: 6803201960212961244}
   - component: {fileID: 7483644226846887300}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: archeryrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7352546306975296165}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: cannon_tower_LVL_1_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1115922771871862818}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782376653439934207}
   - component: {fileID: 878967073187725018}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cannon_tower_LVL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2096137301712485444}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -546,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3511699720877314040}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4864322313419915142}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000046577703, y: 0.99993557, z: 0.0000002521652, w: -0.011354813}
+  m_LocalRotation: {x: 0, y: 0.99753964, z: -0, w: -0.07010466}
   m_LocalPosition: {x: -3.2892068e-15, y: 11.548903, z: 0.106813066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -569,7 +562,7 @@ Transform:
   - {fileID: 2096137301712485444}
   - {fileID: 8746369272300226682}
   m_Father: {fileID: 3901608680678855247}
-  m_LocalEulerAnglesHint: {x: 0, y: 181.301, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 188.04, z: 0}
 --- !u!1 &7211179941917566710
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5447424597513162852}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -610,7 +603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5428120169905010624}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

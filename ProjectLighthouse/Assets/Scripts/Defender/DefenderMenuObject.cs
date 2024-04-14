@@ -1,19 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using UniRx;
 
 public class DefenderMenuObject : DraggableWorldObject
 {
     [SerializeField] Image defenderIcon;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] DefenderData data;
+    [SerializeField] TMPro.TextMeshProUGUI costText;
+    [SerializeField] GameObject disableIndicator;
 
     protected override void Start()
     {
         base.Start();
+
+        costText.text = data.cost.ToString();
+
+        CurrencyManager.Instance.SubscribeCurrency(CurrencyType.Gold).Subscribe(x =>
+        {
+            disableIndicator.SetActive(!CurrencyManager.Instance.CheckCost(CurrencyType.Gold, data.cost));
+            
+        }).AddTo(this);
+
     }
 
     public override void OnBeginDrag(PointerEventData eventData)
@@ -40,7 +50,7 @@ public class DefenderMenuObject : DraggableWorldObject
             var sp = hit.transform.GetComponentInParent<DefenderSpawnPoint>();
             if (sp != null)
             {
-                sp.SpawnDefender(prefabToInstantiate);
+                sp.SpawnDefender(prefabToInstantiate, data);
             }
         }
     }

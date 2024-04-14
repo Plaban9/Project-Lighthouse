@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6734294306891828326}
   - component: {fileID: 2654738310821317916}
   - component: {fileID: 4660650816366326812}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tower_Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,15 +102,8 @@ MonoBehaviour:
   gunPoints:
   - {fileID: 6176401022650557501}
   gunPoints2: []
-  bulletPrefab: {fileID: 1799002537151645776, guid: 014e870dab061ef4aa3849ee47d1f15d,
-    type: 3}
-  fireRate: 1
-  rotationSpeed: 300
+  defenderData: {fileID: 11400000, guid: b359ab38709de4245a887f4ee524672d, type: 2}
   vision: {fileID: 2793159461591790104}
-  visionRadius: 120
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
   targetEnemy: {fileID: 0}
 --- !u!1 &2704886543147216524
 GameObject:
@@ -121,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6176401022650557501}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2793159461591790104}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1499931937797215959}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RotatingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

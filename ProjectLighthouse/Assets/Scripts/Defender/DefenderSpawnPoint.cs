@@ -24,6 +24,8 @@ public class DefenderSpawnPoint : MonoBehaviour
     RaycastHit hitData;
     DefenderSpawnManager DSM;
 
+    public DefenderData defenderData { get; private set; }
+
     void Start()
     {
         originalColor = baseMesh.material.color;
@@ -58,7 +60,7 @@ public class DefenderSpawnPoint : MonoBehaviour
         }
     }
 
-    public void SpawnDefender(GameObject defender)
+    public void SpawnDefender(GameObject defender, DefenderData data)
     {
         if(spawnPosition.childCount == 0)
         {
@@ -72,7 +74,16 @@ public class DefenderSpawnPoint : MonoBehaviour
             //d.transform.position = spawnPosition.position;
             status = DefenderSpawnPointStatus.Occupied;
             spawnEffect.Play();
+
+            defenderData = data;
+            CurrencyManager.Instance.AddCoin(-data.cost);
         }
+    }
+
+    public void SellDefender()
+    {
+        CurrencyManager.Instance.AddCoin((int)(defenderData.cost * 0.5f));
+        Reset();
     }
 
     public void Reset()
@@ -85,6 +96,9 @@ public class DefenderSpawnPoint : MonoBehaviour
             }
         }
 
+        defenderData = null;
         status = DefenderSpawnPointStatus.Available;
     }
+
+    public bool HasDefender() => status == DefenderSpawnPointStatus.Occupied;
 }
