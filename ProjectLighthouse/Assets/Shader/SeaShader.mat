@@ -58,12 +58,12 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaterDepth: -8.12
-    - _WaterDisplacement: 3
+    - _WaterDisplacement: 3.5
     - _WaterRippleDensity: 1000
     - _WaterRippleIntensity: 20
     - _WaterRippleSize: 2
-    - _WaterWaveScale: 9000
-    - _WaveSpeed: 3000
+    - _WaterWaveScale: 6090
+    - _WaveSpeed: 10000
     - _water_ripple_intensity: 8.2
     - _water_scale: 90
     - _waterspeed: 2
