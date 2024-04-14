@@ -76,8 +76,9 @@ namespace Menu.MenuCameraControl
 
         IEnumerator StartCamera()
         {
-            for (int i = 0; i < timeInMsToLift; i++)
+            for (float i = 0; i < timeInMsToLift;)
             {
+                i += Time.deltaTime;
                 yield return null;
             }
             ToMainMenu();
@@ -85,7 +86,7 @@ namespace Menu.MenuCameraControl
 
         IEnumerator LogoFadeInFadeOut()
         {
-            for (float i = 0; i < timeInMsToLift + 1; i++)
+            for (float i = 0; i < timeInMsToLift + 1; i+=Time.deltaTime)
             {
                 float value = logoAnimation.Evaluate(i / timeInMsToLift);
                 logo.GetComponent<Renderer>().material.SetFloat("_Visibility", value);
@@ -150,7 +151,7 @@ namespace Menu.MenuCameraControl
 
         private IEnumerator FadeOutTitle(Action action)
         {
-            for (float i = 1.0f; i > 0.0f; i -= 1.0f / titleDuration)
+            for (float i = 1.0f; i > 0.0f; i -= (1.0f*Time.deltaTime) / titleDuration)
             {
                 title.GetComponent<TextMeshPro>().color = new Color(1, 1, 1,
                     titleAnimation.Evaluate(i));
@@ -286,6 +287,7 @@ namespace Menu.MenuCameraControl
 
         public void ToGame()
         {
+            SetCameraPosition(CameraPositions.GAME);
             SceneManager.Instance.LoadScene("GameplayPrototypeScene", "CrossFade");
         }
 

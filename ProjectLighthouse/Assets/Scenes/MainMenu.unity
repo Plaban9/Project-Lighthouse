@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.0125
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.00074758223, g: 0.1981132, b: 0.037771378, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -6465,8 +6465,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  fadeDuration: 100
-  timeInMsToLift: 400
+  fadeDuration: 1
+  timeInMsToLift: 3
   logo: {fileID: 1966726348}
   logoMaterial: {fileID: 0}
   logoAnimation:
@@ -6539,7 +6539,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   title: {fileID: 863795843}
-  titleDuration: 400
+  titleDuration: 0.4
   titleAnimation:
     serializedVersion: 2
     m_Curve:

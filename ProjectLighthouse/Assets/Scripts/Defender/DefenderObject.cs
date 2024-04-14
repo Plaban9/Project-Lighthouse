@@ -46,9 +46,12 @@ public class DefenderObject : MonoBehaviour
         var visionRadius = defenderData.visionRadius;
         enemyContailer = Physics.OverlapSphere(vision.position, visionRadius, defenderData.targetMask);
 
+#if UNITY_EDITOR
         if (!EditorApplication.isPlaying || EditorApplication.isPaused) return;
+#endif
 
-        if(enemyContailer.Length > 0)
+
+        if (enemyContailer.Length > 0)
         {
             // If enemy is out of range
             if (!enemyContailer.Select(x => x.GetComponent<Enemy>()).ToList().Contains(targetEnemy))
