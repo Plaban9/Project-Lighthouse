@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections;
 using TMPro;
 
 using UnityEngine;
@@ -60,7 +60,7 @@ public class TimeController : MonoBehaviour
         //
 
 
-        _currentTime = DateTime.Now + TimeSpan.FromHours(_startHour);
+        //_currentTime = DateTime.Now + TimeSpan.FromHours(_startHour);
         _sunriseTime = TimeSpan.FromHours(_sunriseHour);
         _sunsetTime = TimeSpan.FromHours(_sunsetHour);
         _fogStartTime = TimeSpan.FromHours(_fogStartHour);
@@ -195,5 +195,22 @@ public class TimeController : MonoBehaviour
     public void FreezeTime(bool frozenTime)
     {
         _frozenTime = frozenTime;
+    }
+
+    public void MoveToTime(float time)
+    {
+        StartCoroutine(InterpolateToTime(time));
+    }
+
+    public IEnumerator InterpolateToTime(float time)
+    {
+        DateTime _targetTime = DateTime.Today.AddHours(time);
+
+        while(_currentTime.Hour < _targetTime.Hour)
+        {
+            _currentTime = _currentTime.AddMinutes(240*Time.deltaTime);
+            yield return null;
+        }
+
     }
 }

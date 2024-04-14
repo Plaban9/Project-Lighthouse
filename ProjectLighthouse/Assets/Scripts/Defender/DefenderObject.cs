@@ -99,7 +99,9 @@ public class DefenderObject : MonoBehaviour
                         if (fireTimer >= fireRate)
                         {
                             fireTimer = 0;
-                            Shot();
+                            //Shot();
+                            TrackingFire(enemy.gameObject);
+
                         }
                         break;
                     }
@@ -116,7 +118,8 @@ public class DefenderObject : MonoBehaviour
                         if (fireTimer2 >= fireRate)
                         {
                             fireTimer2 = 0;
-                            Shot2();
+                            //Shot2();
+                            TrackingFire(enemy.gameObject);
                         }
                         break;
                     }
@@ -128,6 +131,14 @@ public class DefenderObject : MonoBehaviour
     public void SetDeployed(bool set)
     {
         isDeployed = set;
+    }
+
+    void TrackingFire(GameObject go)
+    {
+        var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
+        var bullet = GetBullet();
+        bullet.transform.SetLocalPositionAndRotation(gunPoint.position, gunPoint.rotation);
+        bullet.TrackingFire(go);
     }
 
     void Shot()
@@ -144,6 +155,7 @@ public class DefenderObject : MonoBehaviour
         bullet.transform.SetLocalPositionAndRotation(gunPoint.position, gunPoint.rotation);
         bullet.Fire(gunPoint.forward);
     }
+
 
     private Projectile GetBullet()
     {

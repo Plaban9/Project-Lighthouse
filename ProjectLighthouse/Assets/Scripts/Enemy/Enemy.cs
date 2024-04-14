@@ -7,12 +7,23 @@ using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float maxHp = 10f;
-    [SerializeField] ReactiveProperty<float> curHp = new ReactiveProperty<float>();
+
     [SerializeField] private Animator _anim;
+    [SerializeField] private EnemyHealthBar _healthBar;
     private NavMeshAgent _agent;
     private Transform _lightHouse;
     Subject<bool> isDead = new Subject<bool>();
+    private EnemySpawnManager _manager;
+
+    [Header("Attributes")]
+    [SerializeField] float maxHp = 10f;
+     ReactiveProperty<float> curHp = new ReactiveProperty<float>();
+    [SerializeField] public float _attackDamage = 10f;
+    [SerializeField] public float _attackDelay = 5f;
+    private float _attackCooldown = 0f;
+    [SerializeField] public float _movespeed = 1f;
+
+
 
     private void Awake()
     {
@@ -23,6 +34,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         curHp.Value = maxHp;
+        _agent.speed = _agent.speed * _movespeed;
         _agent.SetDestination(_lightHouse.position);
 
     }
@@ -34,9 +46,23 @@ public class Enemy : MonoBehaviour
 
         //transform.LookAt(_lightHouse);
 
-        if (Physics.CheckSphere(transform.position, 25, _lightHouse.gameObject.layer))
+        if(_attackCooldown > 0f)
         {
-            GameManager.Instance.SetGameOver(true);
+            _attackCooldown -= Time.deltaTime;
+        }
+
+        Vector3 ignoreYe = transform.position;
+        ignoreYe.y = 0;
+        Vector3 ignoreYl = _lightHouse.position;
+        ignoreYl.y = 0;
+        if (Vector3.Distance(ignoreYe, ignoreYl) <= 30f)
+        {
+            _agent.speed = 0f;
+            if(_attackCooldown <= 0f)
+            {
+                _attackCooldown = _attackDelay;
+                Attack();
+            }
         }
     }
 
@@ -58,12 +84,17 @@ public class Enemy : MonoBehaviour
     {
         maxHp = hp;
         curHp.Value = hp;
+        _healthBar.SetPercentHP(curHp.Value / maxHp);
+
+
     }
 
     public void ReceiveDamage(float dmg)
     {
         //GameManager.Instance.SetGameOver(true);
         curHp.Value -= dmg;
+        _healthBar.SetPercentHP(curHp.Value / maxHp);
+        Hurt();
 
         if (curHp.Value <= 0)
         {
@@ -83,8 +114,14 @@ public class Enemy : MonoBehaviour
         return curHp.Value <= 0;
     }
 
+    public void SetManager(EnemySpawnManager manager)
+    {
+        _manager = manager;
+    }
+
     IEnumerator PerformDead()
     {
+        _manager.RemoveEnemy(this.gameObject);
         yield return null;
         Destroy(gameObject);
     }
@@ -103,6 +140,7 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         _anim.SetTrigger("Attack");
+        GameManager.Instance.LighthouseHp.TakeDamage(_attackDamage);
     }
 
     //Hurt anim

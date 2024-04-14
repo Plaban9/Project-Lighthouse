@@ -54,10 +54,13 @@ public class LighthouseHandler : MonoBehaviour
         switch (dayNightCycle)
         {
             case DayNightCycle.DAY:
-                OnDayStarted();
+                //OnDayStarted();
                 break;
             case DayNightCycle.NIGHT:
-                OnNightStarted();
+                //if (GameManager.Instance.GetGameStarted())
+                //{
+                //    OnNightStarted();
+                //}
                 break;
         }
     }
@@ -84,6 +87,7 @@ public class LighthouseHandler : MonoBehaviour
 
     private void OnNightStarted()
     {
+        _canvasNightNotifyEffect._lightCommencementText.text = "NIGHT IS COMING";
         d("Night Started");
 
         if (_musicAudioSource != null)
@@ -125,5 +129,23 @@ public class LighthouseHandler : MonoBehaviour
     private static void d(string message)
     {
         Debug.Log("<<LighthouseHandler>> " + message);
+    }
+
+
+    public void Warning(string message)
+    {
+        if (_siren != null)
+        {
+            _sfxAudioSource.PlayOneShot(_siren, 1f);
+
+            if (_canvasNightNotifyEffect != null)
+            {
+                _canvasNightNotifyEffect.TriggerEffect();
+            }
+
+            _canvasNightNotifyEffect._lightCommencementText.text = message;
+
+            StartCoroutine(nameof(IlluminateLighthouse), _siren.length);
+        }
     }
 }

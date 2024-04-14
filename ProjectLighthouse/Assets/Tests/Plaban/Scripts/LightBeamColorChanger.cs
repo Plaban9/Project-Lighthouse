@@ -12,7 +12,7 @@ namespace LighthouseGames.UI.Effects
     {
         [Header("Text Settings")]
         [SerializeField] private string _textToDisplay;
-        [SerializeField] private TextMeshProUGUI _lightCommencementText;
+        [SerializeField] public TextMeshProUGUI _lightCommencementText;
 
         [Header("Light Beam Settings")]
         [SerializeField] private bool _showLightBeam;
