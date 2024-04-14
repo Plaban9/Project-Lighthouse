@@ -134,7 +134,7 @@ public class DefenderObject : MonoBehaviour
     void TrackingFire(GameObject go)
     {
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
-        var bullet = GetBullet();
+        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.transform.SetLocalPositionAndRotation(gunPoint.position, gunPoint.rotation);
         bullet.TrackingFire(go);
     }

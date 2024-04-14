@@ -2312,6 +2312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverUI
       objectReference: {fileID: 0}
+    - target: {fileID: 623513578761829227, guid: 5142315da48284e44b8be2d505779920,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7376904177183065327, guid: 5142315da48284e44b8be2d505779920,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6005,7 +6010,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayCam: {fileID: 691110378}
-  camToggleGO: {fileID: 0}
 --- !u!1 &1175583036
 GameObject:
   m_ObjectHideFlags: 0
@@ -8612,6 +8616,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8621388214812323525, guid: 54a23e1d1be91984599355fb0b7573f9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000547463
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10018,7 +10027,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -10403,7 +10412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962735851}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3439526, y: -0.00000003957534, z: 0.000000014496516, w: 0.938987}
+  m_LocalRotation: {x: 0.34395257, y: 2.5301543e-15, z: 4.5623577e-17, w: 0.938987}
   m_LocalPosition: {x: 0, y: -2.1539001, z: 2.9930115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11194,12 +11203,17 @@ PrefabInstance:
     - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 300
+      value: 312.10315
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.040344
       objectReference: {fileID: 0}
     - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 300
+      value: 312.10315
       objectReference: {fileID: 0}
     - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb,
         type: 3}
@@ -11265,8 +11279,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -8559731736929697333, guid: 4af02dbedd05c3b45bb745c62aecebb2,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: a0c3c804cfb7498429c8da6d3a69de6f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

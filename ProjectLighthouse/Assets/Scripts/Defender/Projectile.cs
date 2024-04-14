@@ -48,7 +48,6 @@ public class Projectile : MonoBehaviour
     public void Fire(Vector3 direction, Transform targetTrans)
     {
         _trackedEnemy = null;
-            currentTime = 0;
             rb.AddForce(direction * bulletSpeed, ForceMode.VelocityChange);
     }
 
