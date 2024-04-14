@@ -25,7 +25,7 @@ public class DefenderSpawnPoint : MonoBehaviour
     DefenderSpawnManager DSM;
     Camera cam;
 
-    DefenderData defenderData;
+    public DefenderData defenderData { get; private set; }
 
     void Start()
     {
@@ -83,6 +83,12 @@ public class DefenderSpawnPoint : MonoBehaviour
         }
     }
 
+    public void SellDefender()
+    {
+        CurrencyManager.Instance.AddCoin((int)(defenderData.cost * 0.5f));
+        Reset();
+    }
+
     public void Reset()
     {
         if(spawnPosition.childCount > 0)
@@ -93,6 +99,9 @@ public class DefenderSpawnPoint : MonoBehaviour
             }
         }
 
+        defenderData = null;
         status = DefenderSpawnPointStatus.Available;
     }
+
+    public bool HasDefender() => status == DefenderSpawnPointStatus.Occupied;
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6734294306891828326}
   - component: {fileID: 2654738310821317916}
   - component: {fileID: 4660650816366326812}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tower_Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6176401022650557501}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2793159461591790104}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1499931937797215959}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RotatingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

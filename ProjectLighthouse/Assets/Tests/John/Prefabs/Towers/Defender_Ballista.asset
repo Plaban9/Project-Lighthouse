@@ -15,7 +15,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5426644676179594552, guid: af658a5d17a592b4f8950e205a5f6b74,
     type: 3}
   projectileSpeed: 200
-  damage: 2
+  damage: 5
   fireRate: 0.5
   rotationSpeed: 150
   visionRadius: 100

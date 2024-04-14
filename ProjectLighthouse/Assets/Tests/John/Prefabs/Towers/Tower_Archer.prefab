@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4106873292448035285}
   - component: {fileID: 8620792147499199829}
   - component: {fileID: 5675824277845392847}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: archeryrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6000159755765362682}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1529507813556863770}
   - component: {fileID: 1808219966454328506}
   - component: {fileID: 8259211480849818959}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: hex_forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3035623814172536709}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3024254642113648387}
   - component: {fileID: 7441705230852067522}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tower_Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,15 +311,7 @@ MonoBehaviour:
   - {fileID: 3035623814172536709}
   gunPoints2: []
   defenderData: {fileID: 11400000, guid: 75ccbf0c18b8148f484c130a8b2b5d04, type: 2}
-  bulletPrefab: {fileID: 5426644676179594552, guid: f5d2742a9d577714f8485f8f9ff71222,
-    type: 3}
-  fireRate: 0.25
-  rotationSpeed: 100
   vision: {fileID: 7264872171505977527}
-  visionRadius: 100
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
   targetEnemy: {fileID: 0}
 --- !u!1 &6903198169676790172
 GameObject:
@@ -332,7 +324,7 @@ GameObject:
   - component: {fileID: 3649894200539566841}
   - component: {fileID: 5593593690858116386}
   - component: {fileID: 7737248053026668819}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: _archer_tower_LVL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7264872171505977527}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}

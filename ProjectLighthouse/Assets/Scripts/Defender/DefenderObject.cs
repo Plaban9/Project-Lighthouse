@@ -94,8 +94,8 @@ public class DefenderObject : MonoBehaviour
             fireTimer += Time.deltaTime;
             foreach (var gunPoint in gunPoints)
             {
-                if(gunRotationPart.rotation.y == targetRotation.y)
-                //if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, defenderData.targetMask))
+                //if(gunRotationPart.rotation.y == targetRotation.y)
+                if(Physics.Raycast(gunPoint.position, gunPoint.forward, out hitInfo, visionRadius, defenderData.targetMask))
                 {
                     if (hitInfo.transform.TryGetComponent(out Enemy enemy))
                     {
@@ -167,4 +167,6 @@ public class DefenderObject : MonoBehaviour
     {
         (projectilesList.FindAll(x => !x.gameObject.activeSelf))?.ForEach(x => projectilePool.Enqueue(x));
     }
+
+    public DefenderData GetDefenderData() => defenderData;
 }

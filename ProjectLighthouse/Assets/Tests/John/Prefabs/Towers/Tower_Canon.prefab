@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3901608680678855247}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: C_tower_1_rig1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3105840835263302419}
   - component: {fileID: 3831736866331328881}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tower_Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8746369272300226682}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: GunRotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6108012976848766175}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 2626442834541722969}
   - component: {fileID: 7259825154454482520}
   - component: {fileID: 3822347852682725011}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: hex_forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 1560476655046769024}
   - component: {fileID: 6803201960212961244}
   - component: {fileID: 7483644226846887300}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: archeryrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7352546306975296165}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: cannon_tower_LVL_1_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1115922771871862818}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782376653439934207}
   - component: {fileID: 878967073187725018}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cannon_tower_LVL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2096137301712485444}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -539,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3511699720877314040}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5447424597513162852}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -603,7 +603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5428120169905010624}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Door_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
