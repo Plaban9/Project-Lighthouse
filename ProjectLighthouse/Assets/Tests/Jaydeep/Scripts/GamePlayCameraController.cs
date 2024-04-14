@@ -9,9 +9,6 @@ namespace LighthouseGames.MainMenu
     {
         [SerializeField] private CinemachineFreeLook gameplayCam;
 
-        // TODO: MOVE UI STUFF TO GamePlayUIManager Script (need to create new script)
-        [SerializeField] private GameObject camToggleGO;
-
         private CinemachineBrain cinemachineBrain;
 
         private bool canRotateCam;
@@ -27,10 +24,8 @@ namespace LighthouseGames.MainMenu
 
 #if UNITY_ANDROID
             gameplayCam.m_YAxis.m_InputAxisName = "Mouse Y";
-            camToggleGO.SetActive(true);
 #else
             gameplayCam.m_YAxis.m_InputAxisName = "Mouse ScrollWheel";
-            camToggleGO.SetActive(false);
 #endif
         }
 
@@ -45,11 +40,6 @@ namespace LighthouseGames.MainMenu
             {
                 cinemachineBrain.ManualUpdate();
             }
-        }
-
-        public void ToggleCameraRot(bool value)
-        {
-            canRotateCam = value;
         }
     }
 }

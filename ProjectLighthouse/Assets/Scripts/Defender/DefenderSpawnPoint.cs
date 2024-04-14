@@ -23,7 +23,6 @@ public class DefenderSpawnPoint : MonoBehaviour
     DefenderSpawnPointStatus status;
     RaycastHit hitData;
     DefenderSpawnManager DSM;
-    Camera cam;
 
     public DefenderData defenderData { get; private set; }
 
@@ -31,7 +30,6 @@ public class DefenderSpawnPoint : MonoBehaviour
     {
         originalColor = baseMesh.material.color;
         DSM = DefenderSpawnManager.Instance;
-        cam = Camera.main;
         status = DefenderSpawnPointStatus.Available;
 
         if (spawnPosition == null)
@@ -50,7 +48,6 @@ public class DefenderSpawnPoint : MonoBehaviour
         if (!DSM.IsDraggingDefenderFromMenu())
             return;
 
-        //Ray ray = cam.ScreenPointToRay(Input.mousePosition);  // Rather than making spawnpoint do all calculation (every frame)
         Ray ray = DSM.GetMousePositionRelativeToScreen();       // We can use DSM to do it for us just once (every frame)
         bool currentSelectedSlot = Physics.Raycast(ray, out hitData, 1000) && hitData.transform == baseMesh.transform;
         if (currentSelectedSlot && status == DefenderSpawnPointStatus.Available)
