@@ -52,16 +52,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthStrength: 0.03
-    - _FoamAmount: 60.1
-    - _FoamCutoff: 11.8
-    - _FoamScale: 1440.8
+    - _FoamAmount: 3.16
+    - _FoamCutoff: 1
+    - _FoamScale: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaterDepth: -8.12
     - _WaterDisplacement: 3.5
-    - _WaterRippleDensity: 1000
+    - _WaterRippleDensity: 400
     - _WaterRippleIntensity: 20
-    - _WaterRippleSize: 2
+    - _WaterRippleSize: 1
     - _WaterWaveScale: 6090
     - _WaveSpeed: 10000
     - _water_ripple_intensity: 8.2
@@ -70,7 +70,7 @@ Material:
     - _wave_intensity: 1
     - _wave_scale: 2.76
     m_Colors:
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FoamColor: {r: 0.7962264, g: 1, b: 0.9179474, a: 1}
     - _WaterColor: {r: 0, g: 0.379466, b: 0.4528302, a: 0}
     - _WaterMovementDirection: {r: 0.0003, g: 0.0001, b: 0, a: 0}
     - _WaterRippleColor: {r: 0, g: 1, b: 0.46156788, a: 0}

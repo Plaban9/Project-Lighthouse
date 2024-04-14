@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _Alpha: 0.45339474
     - _Pct: 0
-    - _Percentage: 0.66
+    - _Percentage: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
