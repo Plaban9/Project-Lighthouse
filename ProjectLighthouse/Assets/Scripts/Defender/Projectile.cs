@@ -9,8 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float damage = 1f;
     Rigidbody rb;
 
-    float currentTime = 0f;
-    float maxlifeTime = 10f;
+    private Transform target;
 
     /// <summary>
     /// Tracking stuff!
@@ -40,17 +39,13 @@ public class Projectile : MonoBehaviour
                 StartCoroutine(KillAfter(1f));
             }
         }
-        if(currentTime < maxlifeTime)
-        {
-            currentTime += Time.deltaTime;
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        //if (target != null)
+        //    rb.position = Vector3.MoveTowards(rb.position, target.position, bulletSpeed * Time.deltaTime);
+        //else
+        //    rb.position = Vector3.MoveTowards(rb.position, transform.forward, bulletSpeed * Time.deltaTime);
     }
 
-    public void Fire(Vector3 direction)
+    public void Fire(Vector3 direction, Transform targetTrans)
     {
         _trackedEnemy = null;
             currentTime = 0;
@@ -69,6 +64,7 @@ public class Projectile : MonoBehaviour
             enemy.ReceiveDamage(damage);
             StartCoroutine(KillAfter(1f));
         }
+        Destroy(gameObject);
     }
 
     private IEnumerator KillAfter(float timetodeath)
