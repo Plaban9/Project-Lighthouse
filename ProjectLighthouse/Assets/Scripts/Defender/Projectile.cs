@@ -9,8 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float damage = 1f;
     Rigidbody rb;
 
-    float currentTime = 0f;
-    float maxlifeTime = 10f;
+    private Transform target;
 
     private void Awake()
     {
@@ -25,29 +24,24 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        if(currentTime < maxlifeTime)
-        {
-            currentTime += Time.deltaTime;
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        //if (target != null)
+        //    rb.position = Vector3.MoveTowards(rb.position, target.position, bulletSpeed * Time.deltaTime);
+        //else
+        //    rb.position = Vector3.MoveTowards(rb.position, transform.forward, bulletSpeed * Time.deltaTime);
     }
 
-    public void Fire(Vector3 direction)
+    public void Fire(Vector3 direction, Transform targetTrans)
     {
-        currentTime = 0;
+        target = targetTrans;
         rb.AddForce(direction * bulletSpeed, ForceMode.VelocityChange);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if(other.TryGetComponent(out Enemy enemy) && !enemy.IsDead())
         {
             enemy.ReceiveDamage(damage);
-            gameObject.SetActive(false);
         }
+        Destroy(gameObject);
     }
 }

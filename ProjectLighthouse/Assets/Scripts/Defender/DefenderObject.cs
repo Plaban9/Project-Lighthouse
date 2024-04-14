@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System.Linq;
+using UnityEditor;
 public class DefenderObject : MonoBehaviour
 {
     [Header("Transform")]
@@ -30,14 +31,9 @@ public class DefenderObject : MonoBehaviour
     bool isDeployed = false;
     Collider[] enemyContailer = new Collider[20];
 
-    private Queue<Projectile> projectilePool = new();
-    private List<Projectile> projectilesList = new();
-
     private void Start()
     {
         transform.localEulerAngles = Vector3.zero;
-
-        InvokeRepeating(nameof(ProjectileCleanUp), 10, 2);
     }
 
     private void OnDrawGizmosSelected()
@@ -50,6 +46,8 @@ public class DefenderObject : MonoBehaviour
     void Update()
     {
         if (!isDeployed) return;
+
+        if (!EditorApplication.isPlaying || EditorApplication.isPaused) return;
 
         enemyContailer = Physics.OverlapSphere(vision.position, visionRadius, targetMask);
 
@@ -133,34 +131,15 @@ public class DefenderObject : MonoBehaviour
     void Shot()
     {
         var gunPoint = gunPoints[curGunPointIndex++ % gunPoints.Count];
-        var bullet = GetBullet();
-        bullet.transform.SetLocalPositionAndRotation(gunPoint.position, gunPoint.rotation);
-        bullet.Fire(gunPoint.forward);
+        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
+        bullet.Fire(gunPoint.forward, targetEnemy.transform);
+        Destroy(bullet.gameObject, 10f);
     }
     void Shot2()
     {
         var gunPoint = gunPoints2[curGunPointIndex2++ % gunPoints2.Count];
-        var bullet = GetBullet();
-        bullet.transform.SetLocalPositionAndRotation(gunPoint.position, gunPoint.rotation);
-        bullet.Fire(gunPoint.forward);
-    }
-
-    private Projectile GetBullet()
-    {
-        if (projectilePool.Count <= 0)
-        {
-            var projectile = Instantiate(bulletPrefab).GetComponent<Projectile>();
-            projectilePool.Enqueue(projectile);
-            projectilesList.Add(projectile);
-        }
-
-        var bullet = projectilePool.Dequeue();
-        bullet.gameObject.SetActive(true);
-        return bullet;
-    }
-
-    private void ProjectileCleanUp()
-    {
-        (projectilesList.FindAll(x => !x.gameObject.activeSelf))?.ForEach(x => projectilePool.Enqueue(x));
+        var bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
+        bullet.Fire(gunPoint.forward, targetEnemy.transform);
+        Destroy(bullet.gameObject, 10f);
     }
 }
