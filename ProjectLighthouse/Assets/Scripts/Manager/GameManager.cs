@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public TimeController timeController;
     public LighthouseHandler lighthouseHandler;
     public LighthouseHp LighthouseHp;
+    public LighthouseTargetting LighthouseTargetting;
 
     static GameManager instance;
 

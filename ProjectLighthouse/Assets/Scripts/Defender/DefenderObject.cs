@@ -4,6 +4,8 @@ using UnityEngine;
 using UniRx;
 using System.Linq;
 using UnityEditor;
+using static TimeController;
+
 public class DefenderObject : MonoBehaviour
 {
     [Header("Transform")]
@@ -20,12 +22,15 @@ public class DefenderObject : MonoBehaviour
 
     [Header("Vision")]
     [SerializeField] Transform vision;
+    
 
     [Header("Target Enemy")]
     [SerializeField] Enemy targetEnemy = null;
     RaycastHit hitInfo;
     bool isDeployed = false;
     Collider[] enemyContailer = new Collider[20];
+
+    DayNightCycle currentState = DayNightCycle.NIGHT;
 
     private void Start()
     {
@@ -53,6 +58,7 @@ public class DefenderObject : MonoBehaviour
 
         if (enemyContailer.Length > 0)
         {
+           
             // If enemy is out of range
             if (!enemyContailer.Select(x => x.GetComponent<Enemy>()).ToList().Contains(targetEnemy))
                 targetEnemy = null;
@@ -82,6 +88,11 @@ public class DefenderObject : MonoBehaviour
 
         if (targetEnemy != null)
         {
+            if (
+                !GameManager.Instance.LighthouseTargetting
+                .GetTargettableEnemies().Contains(targetEnemy)
+                && currentState == DayNightCycle.NIGHT)
+                return;
             var direction = (targetEnemy.transform.position - gunPoints[0].position).normalized;
             var targetRotation = Quaternion.LookRotation(direction);
 
@@ -153,6 +164,29 @@ public class DefenderObject : MonoBehaviour
         var bullet = Instantiate(defenderData.projectilePrefab, gunPoint.position, gunPoint.rotation).GetComponent<Projectile>();
         bullet.Fire(gunPoint.forward, targetEnemy.transform);
         Destroy(bullet.gameObject, 10f);
+    }
+
+    private void OnEnable()
+    {
+        TimeController.dayNightCycleStartNotifier += DayNightEventHandler;
+    }
+
+    private void OnDisable()
+    {
+        TimeController.dayNightCycleStartNotifier -= DayNightEventHandler;
+    }
+
+    private void DayNightEventHandler(DayNightCycle dayNightCycle)
+    {
+        switch (dayNightCycle)
+        {
+            case DayNightCycle.DAY:
+                currentState = DayNightCycle.DAY;
+                break;
+            case DayNightCycle.NIGHT:
+                currentState = DayNightCycle.NIGHT;
+                break;
+        }
     }
 
     public DefenderData GetDefenderData() => defenderData;

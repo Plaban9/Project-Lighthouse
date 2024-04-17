@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.08262164, g: 0.08031328, b: 0.1509434, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientIntensity: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.3708985, g: 0.3783704, b: 0.35722548, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -974,6 +974,8 @@ Transform:
   - {fileID: 1606828643}
   - {fileID: 1337884590}
   - {fileID: 2004305021}
+  - {fileID: 1628439186}
+  - {fileID: 845079687}
   m_Father: {fileID: 988352801}
   m_LocalEulerAnglesHint: {x: 0, y: -54.48, z: 0}
 --- !u!114 &286412353
@@ -988,7 +990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc90c5f25ec79384a843f2bb2bc8d900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationDegressPerSecond: 7.5
+  _rotationDegressPerSecond: 12
+  rotateSpeedMovement: 0
 --- !u!114 &304598579 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 866815677359063382, guid: 1f8b6f86aeeca3d4fa2c71e36a9d923b,
@@ -2656,7 +2659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &607457502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4412,6 +4415,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &845079686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845079687}
+  - component: {fileID: 845079688}
+  - component: {fileID: 845079689}
+  - component: {fileID: 845079690}
+  m_Layer: 0
+  m_Name: LighthouseCollider2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &845079687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845079686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.026264153, z: 0, w: 0.99965507}
+  m_LocalPosition: {x: -12, y: -76.92, z: -150.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 286412352}
+  m_LocalEulerAnglesHint: {x: 0, y: 3.01, z: 0}
+--- !u!136 &845079688
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845079686}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 28.162209
+  m_Height: 217.45963
+  m_Direction: 2
+  m_Center: {x: 0.00025956487, y: 16.468994, z: 78.79658}
+--- !u!114 &845079689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845079686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27da282223446a04aa10fd5d4d4d367d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lt: {fileID: 988352807}
+--- !u!54 &845079690
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845079686}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &851141092 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5681488943834829179, guid: 1f8b6f86aeeca3d4fa2c71e36a9d923b,
@@ -4668,10 +4768,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 607457502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -25}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &955475122
 MonoBehaviour:
@@ -4976,6 +5076,7 @@ GameObject:
   - component: {fileID: 988352802}
   - component: {fileID: 988352805}
   - component: {fileID: 988352806}
+  - component: {fileID: 988352807}
   m_Layer: 0
   m_Name: Lighthouse
   m_TagString: Untagged
@@ -4992,7 +5093,7 @@ Transform:
   m_GameObject: {fileID: 988352800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5327,6 +5428,19 @@ MonoBehaviour:
   healthBarMaterial: {fileID: 2100000, guid: 8bacdd4999dec6848a5d49c7c5b47456, type: 2}
   healthBar: {fileID: 1702575985}
   lightHouseMaxHp: 300
+--- !u!114 &988352807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988352800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c15c04ac180fed43b89aaf5090737bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targettableEnemies: []
 --- !u!1 &992383186
 GameObject:
   m_ObjectHideFlags: 0
@@ -8111,7 +8225,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.122641504, g: 0.10988563, b: 0.10806336, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -9231,6 +9345,103 @@ Transform:
   - {fileID: 383566103}
   m_Father: {fileID: 286412352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1628439185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1628439186}
+  - component: {fileID: 1628439187}
+  - component: {fileID: 1628439188}
+  - component: {fileID: 1628439189}
+  m_Layer: 0
+  m_Name: LighthouseCollider1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1628439186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628439185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.049982782, z: 0, w: 0.9987501}
+  m_LocalPosition: {x: 7.63, y: -75, z: 38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 286412352}
+  m_LocalEulerAnglesHint: {x: 0, y: -5.73, z: 0}
+--- !u!136 &1628439187
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628439185}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 33.576965
+  m_Height: 229.16267
+  m_Direction: 2
+  m_Center: {x: -5.4145136, y: 16.468994, z: 52.91836}
+--- !u!114 &1628439188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628439185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27da282223446a04aa10fd5d4d4d367d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lt: {fileID: 988352807}
+--- !u!54 &1628439189
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628439185}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1633197729
 GameObject:
   m_ObjectHideFlags: 0
@@ -9783,6 +9994,7 @@ MonoBehaviour:
   timeController: {fileID: 1587563476}
   lighthouseHandler: {fileID: 988352804}
   LighthouseHp: {fileID: 988352806}
+  LighthouseTargetting: {fileID: 988352807}
   timeToStartGame: 10
   dayTime: 30
   enemyCountWave: 050000000a000000140000002800000050000000
@@ -10834,8 +11046,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962735851}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3439526, y: -0.00000003957534, z: 0.000000014496516, w: 0.938987}
-  m_LocalPosition: {x: 0, y: -2.1539001, z: 2.9930115}
+  m_LocalRotation: {x: 0.34395257, y: 2.5301543e-15, z: 4.5623577e-17, w: 0.938987}
+  m_LocalPosition: {x: 0, y: 4.546112, z: 2.9930115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11693,7 +11905,7 @@ PrefabInstance:
     - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb,
         type: 3}

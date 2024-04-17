@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7779409700930377888}
   - component: {fileID: 4924993123086378480}
   - component: {fileID: 971913256413941538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile_Poison_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

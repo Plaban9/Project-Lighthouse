@@ -23,7 +23,6 @@ public class TouchController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
-                Debug.Log("Hit: " + hit.transform.name);
                 var sp = hit.transform.GetComponentInParent<DefenderSpawnPoint>();
                 if (sp != null && sp.HasDefender())
                 {

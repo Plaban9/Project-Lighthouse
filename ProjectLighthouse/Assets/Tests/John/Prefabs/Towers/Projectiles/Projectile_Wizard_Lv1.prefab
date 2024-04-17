@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8999103598312487896}
   - component: {fileID: 1688366858402241612}
   - component: {fileID: 4068432241531572604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile_Wizard_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

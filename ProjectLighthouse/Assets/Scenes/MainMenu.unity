@@ -2054,6 +2054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationDegressPerSecond: 7.5
+  rotateSpeedMovement: 0
+  spinRegardless: 1
 --- !u!1001 &542233553
 PrefabInstance:
   m_ObjectHideFlags: 0

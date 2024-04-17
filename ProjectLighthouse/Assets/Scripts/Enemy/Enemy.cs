@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
 
 
+
     private void Awake()
     {
         _agent = GetComponentInChildren<NavMeshAgent>();
@@ -58,8 +59,10 @@ public class Enemy : MonoBehaviour
         ignoreYe.y = 0;
         Vector3 ignoreYl = _lightHouse.position;
         ignoreYl.y = 0;
-        if (Vector3.Distance(ignoreYe, ignoreYl) <= 30f)
+        if (Vector3.Distance(ignoreYe, ignoreYl) <= 60f)
         {
+            _agent.SetDestination(transform.position);
+            _agent.isStopped = true;
             _agent.speed = 0f;
             if(_attackCooldown <= 0f)
             {
@@ -104,9 +107,9 @@ public class Enemy : MonoBehaviour
         if (curHp.Value <= 0)
         {
             CurrencyManager.Instance.AddCoin(dropCoins);
+            GameManager.Instance.LighthouseTargetting.RemoveFromTargettable(this);
 
-            isDead.OnNext(true);
-            isDead.Dispose();
+
             StartCoroutine(PerformDead());
         }
     }
@@ -131,6 +134,8 @@ public class Enemy : MonoBehaviour
         _manager.RemoveEnemy(this.gameObject);
         yield return null;
         Destroy(gameObject);
+        isDead.OnNext(true);
+        isDead.Dispose();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -171,5 +176,6 @@ public class Enemy : MonoBehaviour
     {
         _anim.SetTrigger("Die");
     }
+
     #endregion
 }
